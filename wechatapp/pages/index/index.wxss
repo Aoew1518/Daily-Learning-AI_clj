@@ -1,0 +1,45 @@
+/* 微信的页面加的外层容器，body page里设置的样式，会被所有的元素继承 */
+page {
+  line-height: 1.5;
+  /* rpx 小程序专属相对单位 32 2倍 手机 retina*/ 
+  font-size: 32rpx;
+}
+image {
+  display: block;
+  width: 100%;
+}
+/* .section {
+  height: 80vh;
+  background-color: green !important;
+} */
+.hero{
+  height: 100vh;
+}
+.hero image{
+  /* 图片的宽高比，等比例，不能模糊 */
+  height:38.2vh;
+}
+.hero.white {
+  background: #ffff;
+}
+.hero .content {
+  padding-top: 10%;
+}
+.hero .content.centered {
+  text-align:center;
+}
+.hero .header {
+  font-size: 72rpx;
+  font-weight: bold;
+  margin: 0 12% 16rpx;/* 顺时针 上右下左  */
+}
+.hero .sub-header {
+  font-size: 32rpx;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  color: rgba(0, 0, 0, 0.85);
+}
+.hero .description {
+  padding: 0 12%;
+  margin-bottom: 64rpx;
+}
