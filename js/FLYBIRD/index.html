@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="wrapBg">
+
+      <div id="headTitle">
+        <img src="./img/bird0.png" alt="" id="headBird">
+      </div>
+
+      <button id="statrtBtn"></button>
+
+      <div id="grassLand1"></div>
+      <div id="grassLand2"></div>
+    </div>
+
+  <script src="bird.js"></script>
+  <script src="block.js"></script>
+  <script>
+    var jsHeadTitle = document.getElementById('headTitle')/*div.headTitle*/
+    var jsHeadBird = document.getElementById('headBird')/*div.headTitle>img.headBird*/
+    var jsWrapBg = document.getElementById('wrapBg')/*读取存放小鸟的容器*/
+    // 标题的摆动
+    var Y = 3
+    var imgArr = ['./img/bird0.png', './img/bird1.png']
+    var index = 0
+    var headWaveTimer=setInterval(headWave, 200)/*setInterval()定时器，每隔0.2秒执行函数命headWave*/
+
+    function headWave() {
+      Y = Y * -1
+      jsHeadTitle.style.top = jsHeadTitle.offsetTop + Y + 'px'
+      jsHeadBird.src = imgArr[index++]/*与修改css样式.style.top类似.src直接修改src的属性*/
+      if (index > 1) {
+        index = 0
+      }
+    }
+
+    // 草地移动
+    var jsGrassLand1 = document.getElementById('grassLand1')
+    var jsGrassLand2 = document.getElementById('grassLand2')
+    setInterval(landRun, 30)
+
+    function landRun() {
+      /*jsGrassLand1.style.left是修改改属性的值，jsGrassLand1.offsetLeft是获得该属性的left值*/
+      jsGrassLand1.style.left = jsGrassLand1.offsetLeft - 3 + 'px'
+      jsGrassLand2.style.left = jsGrassLand2.offsetLeft - 3 + 'px'
+
+      if (jsGrassLand1.offsetLeft <= -343) { // 超出屏幕
+        jsGrassLand1.style.left = 343 + 'px'
+      }
+      if (jsGrassLand2.offsetLeft <= -343) { // 超出屏幕
+        jsGrassLand2.style.left = 343 + 'px'
+      }
+
+    }
+  
+   //点击开始
+    var jsStartBtn = document.getElementById('statrtBtn')
+    jsStartBtn.onclick= function(){
+      //让标题，按钮本身 消失
+      jsHeadTitle.style.display='none'
+      jsStartBtn.style.display='none'
+      clearInterval(headWaveTimer)//为了性能考虑把定时器取消掉clearInterval定时器取消函数
+    
+    //小鸟出现
+      bird.showBird(jsWrapBg)
+      bird.flyBird()
+      bird.wingWave()
+      jsWrapBg.onclick = function(){
+        bird.fallSpeed=-8
+      }
+
+    //管道出现
+
+  
+    }
+  </script>
+</body>
+</html>
+
+

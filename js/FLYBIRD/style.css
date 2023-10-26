@@ -1,0 +1,56 @@
+body{
+    display: flex;
+    height: 100vh;/*相对于窗口高度（视窗）*/
+    justify-content: center;/*x轴居中*/
+    align-items: center;/*y轴居中*/
+}
+
+  #wrapBg{
+    width: 343px;
+    height: 480px;
+    background: url('./img/bg.jpg');
+    position: relative;
+    overflow: hidden;/*超出不展示*/
+  }
+  
+ #headTitle{
+    width: 236px;
+    height: 77px;
+    background: url('./img/head.jpg');
+    position: absolute;
+    left: 53px;
+    top: 100px;
+  }
+  
+  #headBird{
+    position: absolute;
+    right: 0;
+    top: 25px;
+  }
+
+  #statrtBtn{
+    width: 85px;
+    height: 29px;
+    background: url('./img/start.jpg');
+    position: absolute;
+    left: 129px;
+    top: 250px;
+  }
+    
+  #grassLand1{
+    width: 343px;
+    height: 14px;
+    background: url('./img/banner.jpg');
+    position: absolute;
+    top: 423px;
+    left: 0;
+  }
+   
+  #grassLand2{
+    width: 343px;
+    height: 14px;
+    background: url('./img/banner.jpg');
+    position: absolute;
+    top: 423px;
+    left: 100%;
+  }
