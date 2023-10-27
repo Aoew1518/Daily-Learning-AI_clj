@@ -10,7 +10,8 @@ body{
     height: 480px;
     background: url('./img/bg.jpg');
     position: relative;
-    overflow: hidden;/*超出不展示*/
+    overflow: hidden;
+    /*超出不展示*/
   }
   
  #headTitle{

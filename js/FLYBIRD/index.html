@@ -20,11 +20,12 @@
     </div>
 
   <script src="bird.js"></script>
-  <script src="block.js"></script>
+  <script src="utils.js"></script>
   <script>
     var jsHeadTitle = document.getElementById('headTitle')/*div.headTitle*/
     var jsHeadBird = document.getElementById('headBird')/*div.headTitle>img.headBird*/
     var jsWrapBg = document.getElementById('wrapBg')/*读取存放小鸟的容器*/
+    var blockArr = []
     // 标题的摆动
     var Y = 3
     var imgArr = ['./img/bird0.png', './img/bird1.png']
@@ -43,7 +44,7 @@
     // 草地移动
     var jsGrassLand1 = document.getElementById('grassLand1')
     var jsGrassLand2 = document.getElementById('grassLand2')
-    setInterval(landRun, 30)
+    var landTimer = setInterval(landRun, 30)
 
     function landRun() {
       /*jsGrassLand1.style.left是修改改属性的值，jsGrassLand1.offsetLeft是获得该属性的left值*/
@@ -57,6 +58,38 @@
         jsGrassLand2.style.left = 343 + 'px'
       }
 
+      //管道移动
+      var blockDistance = baseObj.randomNum(120, 230)//随机间距
+      if (blockArr.length > 0) {
+        for (var i = 0; i < blockArr.length; i++) {
+          blockArr[i].moveBlock()
+          // 检测碰撞
+          var x = baseObj.rectangleCrashExamine(blockArr[i].upDivWrap, bird.div)
+          var y = baseObj.rectangleCrashExamine(blockArr[i].downDivWrap, bird.div)
+          var z = bird.div.offsetTop >= 390
+          if (x || y || z) {
+            clearInterval(landTimer)
+            jsWrapBg.onclick=null
+          }
+
+        }
+
+        // 下一根管道的生成
+        if (blockArr[blockArr.length - 1].downDivWrap.offsetLeft < (450 - blockDistance)) {
+          var newBlock = new Block()
+          newBlock.createBlock()
+          blockArr.push(newBlock)
+        }
+
+        // 清除左侧多余的管道
+        if (blockArr[0].downDivWrap.offsetLeft < -60) {
+          jsWrapBg.removeChild(blockArr[0].upDivWrap)
+          jsWrapBg.removeChild(blockArr[0].downDivWrap)
+          blockArr.shift()
+        }
+
+      }
+      // setInterval(b.moveBlock,20)
     }
   
    //点击开始
@@ -76,11 +109,11 @@
       }
 
     //管道出现
-
-  
+      var b=new Block()
+      b.createBlock()
+      blockArr.push(b)
     }
   </script>
+  <script src="block.js"></script>
 </body>
 </html>
-
-

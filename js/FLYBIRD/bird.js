@@ -12,7 +12,8 @@ var bird = {
         this.div.style.position='absolute'//相对于父容器
         this.div.style.left='50px'//距离父容器左边50px，上面200px
         this.div.style.top='200px'
-        
+        this.div.style.zIndex=2
+
         parentObj.appendChild(this.div)
     },
     
