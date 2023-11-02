@@ -30,3 +30,10 @@
             const createPhoneNumber = function(){}    //函数表达式
     
     - 优质的代码，优化代码
+    - replace 的用法
+        - 看文档
+        - 高级用法
+            replace（正则,callback）
+            /{name}|{n}/  g全局变量
+            callback 返回值 替换的内容
+            参数 val 可以表达 当前匹配的字符串是什么？
