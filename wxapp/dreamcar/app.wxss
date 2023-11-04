@@ -1,0 +1,9 @@
+@import "styles/reset.wxss";
+@import "styles/cover.wxss";
+page{
+  background: #f8f8f8;  
+}
+.section{
+  height: 80vh;
+}
+
