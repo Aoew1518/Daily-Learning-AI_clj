@@ -1,3 +1,16 @@
 .spec{
-  display: flex;
+    /* 新的格式化上下文 */
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ededed;
+    font-size: 24rpx;
+}
+.spec .item{
+    border-right: 1px solid #ededed;
+    padding:64rpx;
+    flex:1;
+}
+.spec .item .value text{
+    font-size:60rpx;
+    margin-right:8rpx;
 }
