@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+            width: 200px;
+            height: 100px;
+            background-color: green;
+            float: left;
+        }
+        .content{
+            width: 100%;
+            height: 200px;
+            background-color: orange;
+        }
+        ul{
+            overflow:auto;
+            /* display: inline-block; */
+            /* 以上两种方法都使得浮动清除了 */
+        }
+    </style>
+</head>
+<body>
+    <ul class="clear">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <div class="content">
+        <p>123</p>
+    </div>
+
+</body>
+</html>
