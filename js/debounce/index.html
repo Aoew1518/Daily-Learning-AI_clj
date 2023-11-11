@@ -1,27 +1,29 @@
-<!-- Document type html5的版本 canvas 3D地球
-    浏览器是网页的运行程序 宿主，web工程师 B/S 架构， c++/java Client/S架构
-    window BOM  Browser Object Model
-    document  DOM  Document Object Model 
-    每一个标签， 都可以来到js内存中成为一个DOM对象
+<!--Document type html5的版本  canvas  3D地球
+    这个页面在浏览器内运行
+    浏览器是网页的运行程序 宿主，web工程师 
+    B/S架构，c++，java，c(client)/s架构
+    运行时有两个对象 
+    Window   BOM(Browser Object Model)浏览器对象模型
+    document DOM (Document Object Model)文档对象模型
+    每一个标签都可以来到js的内存中成为一个DOM对象
 -->
-<!DOCTYPE html>
+<!DOCTYPE html><!--这是个文档类型-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大厂编程素养之从底层看html/JS开发</title>
+    <title>从底层基础看HTML/JS开发</title>
 </head>
 <body>
-    <input type="text" id="unDebounce"> 
-    <!-- HTTP + html DOM 树 dfs  -->
+    <input type="text" id="unDebounce">
+    <!-- HTTP + HTML DOM 树 dfs-->
     <script>
-    //？DOM 对象  DOM编程 
-    // 页面  叫？ Document 
-    let inputa = document.getElementById('unDebounce');
-    // typeof 运算符 数据类型，不靠谱
-    // console.log(typeof inputa) // 怎么反映它是DOM 对象？ 
-    console.log(Object.prototype.toString.call(inputa)) // [object HTMLInputElement]
-
+        //DOM对象  DOM编程
+        //页面 叫 document
+        let inputa=document.getElementById("unDebounce");
+        //typeof 运算符 数据类型，不靠谱
+        //console.log(typeof(inputa));//怎么反映他是一个DOM对象？
+        console.log(Object.prototype.toString.call(inputa));//[Object HTMLInputElement]
     </script>
 </body>
 </html>
