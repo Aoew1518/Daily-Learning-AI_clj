@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前端存储</title>
+</head>
+<body>
+<!-- 前端分为哪些考点？
+- JS语法 
+- html5 
+- es6+
+    let const  class
+- css3 
+    transform 
+- vue  react 
+-  -->
+<div class="wrapper">
+    <h2>Todo Lists</h2>
+    <p></p>
+    <ul class="todos">
+        <li>Loading Todos</li>
+    </ul>
+    <form class="add-items" action="https://www.baidu.com" method="get">
+        <input type="text" name="item" placeholder="请输入任务" required>
+        <input type="submit" value="+ Add Item">
+    </form>
+</div>
+<script>
+// DOM 编程
+const oForm = document.querySelector('.add-items')
+const todoList = document.querySelector('.todos')
+const todos = [] || JSON.parse(localStorage.getItem('todos'));
+//事件监听 DOM2级事件 onClick DOM 0级事件 onclick
+oForm.addEventListener('submit',addItem)
+    // this 指向由调用方式决定
+function addItem(event) {
+    event.preventDefault();
+    console.log(this)
+    // 性能优化 -> DOM树状结构
+    const text = (this.querySelector('[name=item]').value)
+    if(!text)return;
+    // console.log(text);
+    
+    const item = {
+        text,//等同于text:text
+        donr:false
+    }
+    todos.push(item)
+    // 本地存储 BOM
+    window.localStorage.setItem('todos',JSON.stringify(todos))
+    populateList(todos,todoList);
+    this.reset();//重置表单
+
+    function populateList(todos = [], todosList) {
+    todosList.innerHTML = '';
+    todos.forEach((todo, i) => {
+        todosList.innerHTML += `
+            <li>
+                <input type="checkbox" data-index=${i} id="item${i}" ${todo.done ? 'checked' : ''}>
+                <label for="item${i}">${todo.text}</label>
+            </li>
+        `
+        })
+    }
+}
+
+if(todos.length > 0){
+    //复用
+    populateList(todos,todoList);
+}
+
+</script>
+</body>
+</html>
