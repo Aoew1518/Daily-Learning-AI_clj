@@ -1,0 +1,28 @@
+body
+    margin 0
+    font-family sans-serif
+    background url("https://source.unsplash.com/nDqA4d5NL0k/2000x2000")
+    background-size contain
+    //cover 关键字会让背景图片等比例缩放以填充整个背景区域，
+    //并将多余的部分裁切掉。如果背景区域的宽高比与背景图片的宽高比不同，
+    //那么可能会有一些背景区域无法填满，但是 cover 会保证背景图片始终完全覆盖整个背景区域。
+    background-repeat no-repeat
+    background-position center
+    min-height 100vh
+    display flex
+    align-items center
+
+#bands
+    list-style inside square
+    font-size 20px
+    background white
+    width 500px
+    margin auto
+    padding 0
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05)
+    li
+        border-bottom: 1px solid green
+        padding 20px
+        &:last-child//&伪类选择
+            border-bottom-color: red
+            
