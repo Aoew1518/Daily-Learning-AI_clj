@@ -12,7 +12,6 @@
 // bar()
 
 
-
 function foo() { // [[scope]]
  
   function bar() {
