@@ -5,7 +5,7 @@
 // }
 // add('hello', 2)
 
-
+//原始类型
 // console.log(typeof 'hello');
 // console.log(typeof 123);
 // console.log(typeof true);
@@ -14,7 +14,10 @@
 // console.log(typeof 123n);
 // console.log(typeof null); // xxxxxxx
 
-// console.log(typeof({}));  // object
-// console.log(typeof([]));  // object
-// console.log(typeof(new Date())); // object
+console.log(typeof({}));  // object
+console.log(typeof([]));  // object
+console.log(typeof(new Date())); // object
 console.log(typeof(function () {}))  // function
+
+//typeof可以判断原始类型除了null
+//typeof无法判断引用类型除了function

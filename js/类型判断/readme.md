@@ -1,11 +1,13 @@
+## 用于判定对象的类型(4种方法)
+
 # typeof
 1. 可以准确的判断除null之外的原始类型
 2. 可以判断 function 
 
 
 # instanceof
-1. 只能判断引用类型
-2. 通过原型链的查找来判断
+1. 只能判断引用类型(原始类型没有原型,对象才有原型，显示原型是函数独有，隐式原型是对象独有)
+2. 特点：通过原型链的查找来判断
 
 
 # Object.prototype.toString.call(str)
@@ -24,6 +26,6 @@ ToObject('hello')  // {'hello'}  // [[Class]]: String
 
 
 # Array.isArray()
-
+- 只能判断数组
 let arr = []
 arr.isArray()  // xxx
