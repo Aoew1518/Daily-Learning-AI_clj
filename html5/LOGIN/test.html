@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Example</title>
+  <style>
+    /* 隐藏模态框 */
+    #myModal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+
+    /* 模态框内容 */
+    #modalContent {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  <button id="loginButton">Login</button>
+
+  <!-- 模态框 -->
+  <div id="myModal">
+    <div id="modalContent">
+      <p>登录成功！</p>
+    </div>
+  </div>
+
+  <script>
+    var loginButton = document.getElementById('loginButton');
+    var modal = document.getElementById('myModal');
+
+    loginButton.addEventListener('click', function() {
+      // 在这里进行登录验证的逻辑，例如检查用户名和密码是否正确
+
+      // 假设登录验证成功
+      modal.style.display = "block"; // 显示模态框
+    });
+
+    // 点击模态框外部区域，关闭模态框
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>

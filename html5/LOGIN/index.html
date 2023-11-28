@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="login">
+        <div class="login__hd">网易云音乐</div>
+        <div class="logo"></div>
+        <div id="myModal">
+            <div id="modalContent">
+              <p>登录成功！</p>
+            </div>
+        </div>
+        <div class="login__wrap">
+            <div class="username">
+                <span>账号</span>
+                <input type="text" placeholder="请输入账号吧" id = phonevalue>
+            </div>
+            <div class="password">
+                <span>密码</span>
+                <input type="text" placeholder="请输入密码" id = pswvalue>
+            </div>
+
+            <div class="login-btn">
+                <button id = btn>登录</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        let btn = document.getElementById('btn')
+        btn.addEventListener('click',() =>{
+            let xhr = new XMLHttpRequest()
+            let pvalue = document.getElementById('phonevalue').value
+            let pwvalue = document.getElementById('pswvalue').value
+            xhr.open('GET','http://192.168.31.26:3000/login?username='+pvalue+'&password='+pwvalue,true)
+            xhr.send()
+        })
+
+    var loginButton = document.getElementById('btn');
+    var modal = document.getElementById('myModal');
+
+    loginButton.addEventListener('click', function() {
+      // 在这里进行登录验证的逻辑，例如检查用户名和密码是否正确
+
+      // 假设登录验证成功
+        modal.style.display = "block"; // 显示模态框
+    });
+
+    // 点击模态框外部区域，关闭模态框
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    </script>
+</body>
+</html>
