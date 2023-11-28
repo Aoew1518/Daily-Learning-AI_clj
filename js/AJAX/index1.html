@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id = "btn">获取新歌</button>
+    <ul id='ul'>
+       
+    </ul>
+
+    <script>
+        let btn = document.getElementById('btn')
+        btn.addEventListener('click',() =>{
+            //发送一个http请求
+            let xhr = new XMLHttpRequest()
+            xhr.open('GET','http://192.168.31.26:3000/top/song?type=7',true)
+            xhr.onreadystatechange = () =>{
+                if(xhr.readyState === 4 && xhr.status === 200){
+                    // console.log(JSON.parse(xhr.responseText)); //响应体
+                    const result = JSON.parse(xhr.responseText).data
+                    for(let key in result){
+                        // result[key].name
+                        const li = document.createElement('li') //动态创建DOM结构
+                        li.innerText = result[key].name
+                        document.getElementById('ul').appendChild(li)
+                    }
+                }
+            }
+            xhr.send()
+        })
+    </script>
+</body>
+</html>
