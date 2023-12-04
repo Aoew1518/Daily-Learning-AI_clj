@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // - 如何单例 不用class + static 怎么做？
+    // - 对localStorage 封装，对小白友好
+    function StorageBase(){
+
+    }
+    StorageBase.prototype.getItem = function(key){
+        return localStorage.getItem(key);
+    }
+    StorageBase.prototype.setItem = function(key,value){
+        return localStorage.setItem(key,value);
+    }
+    StorageBase.prototype.removeItem = function(key){
+        return localStorage.removeItem(key);
+    }
+    // let globalStorage = null
+    const Storage = (function(){
+        let instance = null
+        return function(){
+            if(!instance){
+                instance = new StorageBase();
+            }
+            return instance
+        }
+    })()
+
+    const sto = new Storage();
+    const sto2 = new Storage();
+    console.log(sto===sto2)
+</script>
+</body>
+</html>

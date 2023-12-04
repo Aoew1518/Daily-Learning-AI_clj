@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage</title>
+</head>
+<body>
+    <script>
+        // es6 提供了class关键字，让js像大型语言一样
+        // 判断实例化过？Storage.instance null new Storage
+        // Storage 单例统一管理localStorage
+        // 封装，把好用留给别人，把复杂留给自己，protected, private,static
+        // 不用知道localStorage怎么用，Storage getItem 
+        class Storage {
+            static instance = null 
+            static getInstance(){
+                // 静态属性
+                if(!Storage.instance){
+                    Storage.instance = new Storage();
+                }
+                return Storage.instance;
+            }
+            constructor(name) {
+                this.name = name;
+                this.data = [];   
+            }
+            getItem(key){
+                return localStorage.getItem(key);
+            }
+            setItem(key,value){
+                return localStorage.setItem(key,value);
+            }
+            removeItem(key){
+                return localStorage.removeItem(key);
+            }
+        }
+        // new ? {} ? {}
+        // a b 只要拿到Storage实例，静态方法，在类上调用，跳过了实例化的那一步
+        const a = Storage.getInstance();
+        const b = Storage.getInstance();
+        // console.log(a===b);//false
+        a.setItem('name','李雷')
+        /*
+        let storage = new Storage(5);
+        storage.write(1);
+        console.log(storage.read());
+        */
+    </script>
+</body>
+</html>
