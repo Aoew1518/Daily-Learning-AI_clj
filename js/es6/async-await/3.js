@@ -22,7 +22,7 @@ function baby() {
 
 // async  === return new Promise((resolve, reject) => {})
 async function foo() {
-  await xq()
+  await xq()//await 必须要promise对象才能使用
   await marry()
   baby()
 }
