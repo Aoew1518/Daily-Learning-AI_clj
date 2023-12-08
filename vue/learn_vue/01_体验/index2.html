@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <vid id="app"></vid>
+    <!-- type="x-template"可以得到html提示，其内容为字符串 -->
+    <script type="x-template" id="my-app">
+        <div>
+            <h2>{{title}}</h2>
+            <h2>{{count}}</h2>
+            <button @click="add">+1</button>
+        </div>
+    </script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const counter = 10
+
+        Vue.createApp({
+            template: '#my-app',
+            data() { //data相当于data:function(){} 为数据源，是响应式的，可以返回daita对象，也可以返回一个函数
+                return {
+                    title:'你好世界',
+                    count:1
+                }
+            },
+            methods:{
+            //    add:function(){}
+            add(){
+                // this.data.count++
+                this.count++
+                // console.log('click to add')
+            }
+            }
+        }).mount('#app')//挂载在#app上
+    </script>
+</body>
+</html>
