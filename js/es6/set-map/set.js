@@ -7,19 +7,19 @@ console.log(s.size);
 
 
 let arr = [1,1,2,2,3,3]
-let newArr = [...new Set(arr)]
-console.log(newArr);
+let newArr = [...new Set(arr)] 
+console.log(newArr);//[1,2,3]
 
 let x = new Set([1,2,3])
 x.add(4)
 x.delete(1)
 x.delete(5)
 //Set 对象 无法修改
-console.log(x.has(1));
+console.log(x.has(1));//true /false
 s.clear() //清空
 console.log(x);
 
-// 遍历
+// 遍历 forEach在es6之前是数组独有的方法，es6后set也能用forEach
 x.forEach((item,key,x) =>{
     console.log(item,key,x);
 })
@@ -33,6 +33,6 @@ for (let value of x.keys()){ // for of 用于遍历具有迭代器属性（Itera
     console.log(value);
 }
 
-for (let item of x.entries()){ // 是二维数组，返回key和value  [[1,1],[2,2],[3,3]]
+for (let item of x.entries()){ //entries()返回键值对，是二维数组，返回key和value  [[1,1],[2,2],[3,3]]
     console.log(item);
 }

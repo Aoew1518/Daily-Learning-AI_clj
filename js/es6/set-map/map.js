@@ -25,11 +25,11 @@ let m = new Map();
 m.set('a',1); //增
 console.log(m.get('a'));//读取
 m.delete('a')// 删
-m.has('a') // 查
+m.has('a') // 查 true/false
 console.log(m.size);
 
-m.set({},1)
-m.set([],2)
+m.set({},1) //key为{},可以为一个对象
+m.set([],2) //key可以为[],可以为一个数组
 m.set(true,3)
 console.log(m);
 
@@ -51,3 +51,6 @@ console.log(m.entries());// 对象里放了数组
 for (let item of m.entries()){
     console.log(item);
 }
+//[{},1]
+//[[],2]
+//[true,3]
