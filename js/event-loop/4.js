@@ -1,6 +1,6 @@
 async function fn1() {
   await fn2()
-  await fn3()
+  await fn3()//await 会被挤到微任务队列
   console.log('fn1 end');
 }
 fn1()
