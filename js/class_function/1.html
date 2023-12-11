@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// es6 +   兼容性不好
+// class Person {
+//     constructor(name) {
+//         this.name = name
+//     }
+//     sayHello() {
+//         return `hello, I am ${this.name}`
+//     }
+// }
+
+// 第二种
+function Person(name) {
+    this.name = name;   
+}
+Person.prototype.sayHello = function() {
+    return 'hello, I am ' + this.name;
+}
+// Object.keys 只会把对象上可遍历的属性拿到 key constructor 不可遍历
+console.log(Person.prototype,Object.keys(Person.prototype)) // ["constructor", "sayHello"]
+console.log(Person.prototype,Object.getOwnPropertyNames(Person.prototype))
+
+
+// const zyc = new Person('雨程');
+// console.log(zyc.sayHello()) //hello, I am 雨程
+// stylus css 
+// 最后转化为Function 
+</script>
+</body>
+</html>
