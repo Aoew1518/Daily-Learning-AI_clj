@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <h2>当前温度：{{temp}}</h2>
+        <h3>建议穿：{{cloth}}</h3>
+        <button @click="minus">-5</button>
+        <button @click="add">+5</button>
+
+
+    </template>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.js"></script>
+    <script>
+        Vue.createApp({
+            template: '#my-app',
+            data() {
+                return {
+                    temp: 30,
+                    cloth: "夹克"
+                }
+            },
+            watch: { //监听，没有缓存，每次都是重新读取
+                // temp(newValue,oldValue){
+                //     console.log(newValue,oldValue)
+                //     if(newValue <= 10){
+                //         this.cloth = "棉袄"
+                //     }
+                //     else if(newValue <= 20){
+                //         this.cloth = "夹克"
+                //     }
+                //     else{
+                //         this.cloth = "短袖"
+                //     }
+                // }
+                temp: {
+                    handler: function (newValue, oldValue) {
+                        if (newValue <= 10) {
+                            this.cloth = "棉袄"
+                        }
+                        else if (newValue <= 20) {
+                            this.cloth = "夹克"
+                        }
+                        else {
+                            this.cloth = "短袖"
+                        }
+                    },
+                    immediate: true
+                }
+            },
+            computed: { //函数计算属性是响应式的执行，计算函数里的函数相当于data的数据源
+                //函数会在所依赖的变量值发生改变时自动重新执行 
+                // 如果函数体内的数据不再改变，则会有缓存，下次执行时更快           
+            },
+            methods: {
+                minus() {
+                    this.temp -= 5
+
+                },
+                add() {
+                    this.temp += 5
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

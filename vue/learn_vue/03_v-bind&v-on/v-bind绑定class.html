@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <!-- <h2 :class="ClassName">胡总很强</h2>
+        <h2 :class="{'active':isActive}">胡总很强</h2> -->
+        <button @click="toggle">切换</button>
+
+        <!-- <h2 :class="{'active':isActive,'title':isActive}">胡总很帅</h2> -->
+
+        <!-- <h2 :class="classObj">胡总很帅</h2> -->
+
+        <!-- <h2 :class="getClass()">胡总很帅</h2> -->
+
+        <h2 :class="[isActive ? 'active' : 'name']"> 阿美大佬 </h2>
+    
+
+        <!-- <div :abc="isActive">hello world</div>     -->
+    </template>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.js"></script>
+    <script>
+        Vue.createApp({
+            template: '#my-app',
+            data() {
+                return {
+                    ClassName:"active",
+                    isActive:true,
+                    classObj:{
+                        active:true,
+                        title:true
+                    }
+                }
+            },
+            methods: {
+                toggle(){
+                    this.isActive = !this.isActive;
+                },
+                getClass() {
+                    return {
+                        active: this.isActive,
+                        title: true
+                    };
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

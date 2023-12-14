@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <!-- <ul>
+            <li v-for="(song,index) in songs">{{index+1}}--{{song}}</li>
+        </ul> -->
+
+        <ul>
+            <li v-for="(lists,index) in lists" :key="index">
+                <h2>{{lists.author}}</h2>
+                <ul>
+                    <li v-for="songs in lists.songs" :key="songs.id">{{songs.id}}--{{songs.name}}</li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="(val,key,index) in info">{{key}}--{{val}}--{{index}}</li>
+        </ul>
+
+    </template>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.js"></script>
+    <script>
+        Vue.createApp({
+            template: '#my-app',
+            data() {
+                return {
+                    songs:[
+                        '有何不可',
+                        '素颜',
+                        '青年晚报',
+                        '幻听',
+                        '庐州月'
+                    ],
+                    lists: [
+                    {
+                        author: '周杰伦',
+                        songs: [
+                            {id: 1, name: '听妈妈的话'},
+                            {id: 2, name: '夜曲'},
+                            {id: 3, name: '半岛铁盒'},
+                            {id: 4, name: '说好不哭'},
+                                ]
+                    },
+                    {
+                        author: '许嵩',
+                        songs: [
+                            {id: 1, name: '千百度'},
+                            {id: 2, name: '全球变冷'},
+                            {id: 3, name: '拆东墙'},
+                            {id: 4, name: '雅俗共赏'},
+                               ]
+                    }
+                            ],
+                    info: {
+                        name: '蔡总',
+                        age: 18,
+                        like: '泡脚'
+                    },
+                }        
+            },
+            methods: {
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

@@ -9,10 +9,10 @@
     <vid id="app"></vid>
     <template id="my-app">
         <div>
-            <!-- <h2 v-if="status===1">{{time}}</h2>
+            <h2 v-if="status===1">{{time}}</h2>
             <h2 v-else-if="status===2">{{time2}}</h2>
             <h2 v-else>{{time3}}</h2>
-            <button @click="change">切换</button> -->
+            <button @click="change">切换</button>
 
             <h2 @click="hide" v-show="show">{{time}}</h2>
             <!-- v-show是css层次的，用display:none; -->
@@ -35,7 +35,6 @@
             },
             methods:{
                 change(){
-                    // this.time = new Date().toLocaleString()
                     if(this.status === 3)
                     this.status = 0
                     this.status ++
