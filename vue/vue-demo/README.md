@@ -43,3 +43,7 @@
     - template 数据{{name}}，绑定script里的name变量
         -当他需要动态改变时， 响应式编程 ref(初始值)
         name.value = 更新值 template 所有绑定到它的地都会热更新1
+
+1. vue --verson 看vue版本号
+2. vue create 项目名
+3. npm run serve 启动项目
