@@ -18,5 +18,3 @@ JSON.parse(JSON.stringify(obj))
 但是这个方法有缺陷：
 1. 不能处理 undefined，function，Symbol 这些数据类型
 2. 无法处理循环引用
-
-

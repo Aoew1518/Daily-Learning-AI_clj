@@ -1,22 +1,22 @@
 <script>
-    function Bus() {
-    
-    }
-    
-    Car.prototype = {
-      constructor: Bus
-    }
-    function Car() {
-    
-    }
-    
-    let car = new Car()
-    
-    // car.__proto__
-    
-    // constructor 构造器属性，用于记录对象是由谁创建的
-    
-    console.log(car);
-    
-    // 构造函数的显示原型 和 实例对象的隐式原型 肯定是有关系的
-    </script>
+function Bus() {
+
+}
+
+Car.prototype = {
+  constructor: Bus
+}
+function Car() {
+
+}
+
+let car = new Car()
+
+// car.__proto__
+
+// constructor 构造器属性，用于记录对象是由谁创建的
+
+console.log(car);
+
+// 构造函数的显示原型 和 实例对象的隐式原型 肯定是有关系的
+</script>

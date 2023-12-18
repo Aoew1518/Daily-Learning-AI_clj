@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="todos"></ul>
+    <script>
+    // 1.0版本
+    // const todosUL = document.querySelector('.todos');
+    // fetch('http://localhost:3000/todos')
+    //     .then(res => res.json())
+    //     .then(data =>{
+    //         todosUL.innerHTML = data.map(todos =>
+    //         `<li>
+    //             ${todos.txt}
+    //         </li>`
+    //       ).join('')
+    //     })
+
+    // 2.0版本
+    // fetch ajax -> 高级 es7 async await
+    // (async function(){
+        // const todosUL = document.getElementById('.todos');
+        // const res = await fetch('http://localhost:3000/todos');
+        // const data = await res.json();
+        // // todosUL.innerHTML = data.map(todos =>
+        // //     `<li>
+        // //         ${todos.txt}
+        // //     </li>`
+        // //   ).join('')
+        // console.log(data)
+
+        // console.log(fetch('http://localhost:3000/todos'))
+    // })()
+
+    // 3.0版本
+    (async function() {
+        const todosUL = document.getElementById('todos');
+        //由es6提供的Promise类，有then 控制流程的方法
+        // 参数是一个函数， 在这里面封装耗时的异步任务
+        // Promise 默认会给函数传递的第一个参数是resolve函数
+        // 调用resolve then 就执行
+        const p = new Promise((resolve) => {
+            // console.log('函数执行')
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET','http://localhost:3000/todos',true);
+            xhr.send();
+            xhr.onreadystatechange = (e) => {
+                if (e.target.status === 200 && e.target.readyState === 4) {
+                    console.log(e.target.responseText)
+                    const data = JSON.parse(e.target.responseText)
+                    console.log(data)
+                    resolve(data)   
+                }
+            
+            }
+        })
+
+        const data = await p;
+        todosUL.innerHTML = data.map(todo => `
+            <li>${todo.txt}</li>
+        `).join('')
+
+        // p.then(()=>{
+        //     console.log('hello')   
+        // })
+        // console.log(p._proto_)
+    })()
+
+
+    // 4.0版本
+    //     (async function(){
+    //     const todosUL = document.getElementById('todos');
+    //     // 由es6提供的Promise类，有then 控制流程的方法
+    //     // 参数是一个函数，在这里封装耗时的异步任务
+    //     // Promise 默认会给函数传递的第一个参数是resolve函数
+    //     // 调用resolve函数，就会触发then方法
+    //     const p = new Promise((resolve) => {
+    //         setTimeout(() => {
+    //             resolve()
+    //         },1000)
+    //     })
+    //     p.then(()=>{
+    //         console.log('hello')
+
+    //         console.log(p._proto_)
+    //     })
+    // })()
+    </script>
+</body>
+</html>
