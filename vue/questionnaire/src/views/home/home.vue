@@ -1,11 +1,11 @@
 <template>
     <div>
-        <ItemContainerVue />
+        <ItemContainerVue parentCompoent="home"/>
     </div>
 </template>
 
 <script>
-    import ItemContainerVue from '@/components/ItemContainer.vue';
+import ItemContainerVue from '@/components/ItemContainer.vue';
     export default {
         components: {
             ItemContainerVue
