@@ -2,7 +2,7 @@
     <section>
         <header class="top_tips">
             <span class="num_tip" v-if="parentCompoent === 'home'">第一周</span>
-            <span class="num_tip" v-if="parentCompoent === 'item'">题目一</span>
+            <span class="num_tip" v-if="parentComponent === 'item'">题目{{itemNum}}</span>
         </header>
 
         <!-- home -->
@@ -14,29 +14,20 @@
         <!-- item -->
         <div v-if="parentCompoent === 'item'">
             <div class="item_back item_container_style">
-                <div class="item_list_container">
-                    <header class="item_title">{{ questions[0].title }}</header>
+                <div class="item_list_container" v-if="questionList.length">
+                    <header class="item_title">{{ questionList[itemNum - 1].topic_name }}</header>
                     <ul>
-                        <li class="item_list" v-for="(item, index) in questions[0].answers" :key="index">
-                            <span class="option_style">{{ chooseType(index) }}</span>
-                            <span class="option_detail">{{ item }}</span>
+                        <li @click="choosed(index,item.topic_answer_id)" class="item_list"
+                            v-for="(item, index) in questionList[itemNum - 1].topic_answer" :key="index">
+                            <span class="option_style" :class="{ 'current': currentNum === index }">{{ chooseType(index)
+                            }}</span>
+                            <span class="option_detail">{{ item.answer_name }}</span>
                         </li>
-                        <!-- <li class="item_list">
-                            <span class="option_style">A</span>
-                            <span class="option_detail">答案一</span>
-                        </li>
-                        <li class="item_list">
-                            <span class="option_style">A</span>
-                            <span class="option_detail">答案一</span>
-                        </li>
-                        <li class="item_list">
-                            <span class="option_style">A</span>
-                            <span class="option_detail">答案一</span>
-                        </li> -->
                     </ul>
                 </div>
             </div>
-            <span class="next_item button_style"></span>
+            <span v-if="itemNum < questionList.length" class="next_item button_style" @click="nextItem"></span>
+            <span v-else class="submit_item button_style" @click="submit"></span>
         </div>
 
 
@@ -44,18 +35,18 @@
 </template>
 
 <script>
+import router from '@/router'
+import { mapState, mapActions } from 'vuex'
 export default {
     props: ['parentCompoent'],
     data() {
         return {
-            questions: [
-                { id: 1, title: '题目一', answers: ['答案1', '答案2', '答案3', '答案4'] },
-                { id: 2, title: '题目二', answers: ['答案1', '答案2', '答案3', '答案4'] },
-                { id: 3, title: '题目三', answers: ['答案1', '答案2', '答案3', '答案4'] },
-                { id: 4, title: '题目四', answers: ['答案1', '答案2', '答案3', '答案4'] },
-                { id: 5, title: '题目五', answers: ['答案1', '答案2', '答案3', '答案4'] },
-            ]
+            currentNum: null, //选择的选项
+            chooseId:null  //最终确认要报错的答案
         }
+    },
+    computed: {
+        ...mapState(['questionList', 'itemNum']),//相当于在计算属性中定义了questionList
     },
     methods: {
         chooseType(index) {
@@ -67,7 +58,31 @@ export default {
                 return 'C'
             else
                 return 'D'
-        }
+        },
+        choosed(index,id) {
+            // 点谁谁就要高亮，保存被选中的答案
+            this.currentNum = index
+            this.chooseId = id
+        },
+        nextItem() {
+            if (this.currentNum != null) {
+                this.nextItemAction(this.chooseId)//点击触发nextItemAction()方法
+
+                this.currentNum = null // 重置currentNum
+            }else{
+                alert('请先选择答案！')
+            }
+        },
+        submit(){
+            if(this.currentNum !== null){
+                this.nextItemAction(this.chooseId) // 存答案
+                this.$router.push('/score')
+            }
+            else{
+                alert('请先选择答案！')
+            }
+        },
+        ...mapActions(['nextItemAction']) //相当于在方法属性中定义了nextItemAction方法
     }
 }
 </script>
@@ -162,10 +177,18 @@ export default {
         text-align: center;
         font-family: 'Arial';
         margin-right: 0.3rem;
+
+        &.current {
+            background-color: #ffd400;
+            color: #575757;
+            border: #ffd400;
+        }
     }
 }
-
 .next_item {
     background-image: url('../assets/images/2-2.png');
+}
+.submit_item{
+    background-image: url('../assets/images/3-1.png');
 }
 </style>
