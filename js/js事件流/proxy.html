@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+        <li>e</li>    
+    </ul>
+
+    <!-- <script>
+        // 点哪一个li，就打印他的内容
+        // var lis = document.querySelectorAll('li');
+        var lis = document.getElementsByTagName('li');
+
+        console.log(lis);
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].onclick = function () {
+                console.log(this.innerHTML);
+            }
+        }
+    </script> -->
+
+    <script>
+        let ul = document.getElementsByTagName('ul')[0];
+        ul.addEventListener('click', function (e) {
+            // console.log(e.target);
+            console.log(e.target.innerHTML);
+        })
+    </script>
+</body>
+
+</html>

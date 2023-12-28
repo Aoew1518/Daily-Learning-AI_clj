@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #a {
+            width: 400px;
+            height: 400px;
+            background-color: rgb(245, 56, 13);
+        }
+
+        #b {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(27, 140, 238);
+        }
+
+        #c {
+            width: 100px;
+            height: 100px;
+            background: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="a">
+        <div id="b">
+            <div id="c"></div>
+        </div>
+    </div>
+
+    <script>
+        let a = document.getElementById('a');
+        let b = document.getElementById('b');
+        let c = document.getElementById('c');
+
+        // a.addEventListener('click', () => {
+        //     console.log('a被点击');
+        // }, false)
+        // // 默认为false，是冒泡阶段触发事件
+        // // true为捕获阶段触发事件
+        // b.addEventListener('click', (event) => {
+        //     console.log('b被点击');
+        //     //event.stopPropagation();
+        //     //阻止b后面的传播
+        //     event.stopImmediatePropagation();
+        //     //阻止b后面的传播，并且阻止b的后续事件处理函数
+        // }, true)
+        c.addEventListener('click', (event) => {
+            //阻止c后面的传播
+            //event.stopPropagation();
+            console.log('c被点击');
+            // 想要阻止传播
+        }, true)
+        //到目标处就一定会触发，写false和true已经无所谓了
+
+        
+    </script>
+</body>
+
+</html>
