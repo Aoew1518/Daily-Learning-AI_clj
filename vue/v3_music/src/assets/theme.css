@@ -1,0 +1,6 @@
+/* 主题风格样式 */
+/* 样式组合 */
+.bg-main{
+    @apply bg-gray-50;
+    @apply dark:bg-[#171718];
+}
