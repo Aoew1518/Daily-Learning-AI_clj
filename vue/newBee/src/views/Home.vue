@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <header class="home-header active">
+        <header class="home-header">
             <router-link to="#">
                 <i class="iconfont icon-menu"></i>
             </router-link>
@@ -14,10 +14,27 @@
             <router-link to="/login" class="login">登录</router-link>
 
         </header>
+
+        <Swiper id="test" :list="state.swiperList"/>
+        <!-- rest -->
     </div>
 </template>
   
 <script setup>
+import Swiper from '@/components/Swiper.vue';
+import { onMounted, reactive} from 'vue';
+import { getHome } from '@/api/home.js';
+
+const state = reactive({ //state是被reactive包裹的响应式数据
+    swiperList: []
+})
+
+// 请求banner数据
+onMounted(async() => {
+    const {data} = await getHome()
+    console.log(data);
+    state.swiperList = data.data.carousels //拿到轮播图链接
+})
 
 </script>
   
@@ -40,7 +57,7 @@
         padding: 0 15px;
         box-sizing: border-box; //自适应
         font-size: 15px;
-
+        z-index: 2;
         &.active {
             background-color: @primary;
 
@@ -86,4 +103,5 @@
         }
     }
 
-}</style>
+}
+</style>
