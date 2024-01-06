@@ -1,6 +1,6 @@
 // vant引入
 import { createApp } from 'vue'
-import { Button ,Swipe, SwipeItem } from 'vant';
+import { Button, Swipe, SwipeItem, Skeleton, Tabbar, TabbarItem, Icon } from 'vant';
 import 'vant/lib/index.css';
 
 import App from './App.vue'
@@ -12,7 +12,11 @@ import router from './router/index'
 // 挂载
 const app = createApp(App);
 app.use(Button);
-app.use(Swipe);
+app.use(Swipe); // 轮播图
 app.use(SwipeItem);
+app.use(Skeleton);// 骨架屏组件
+app.use(Tabbar);// 底部导航栏
+app.use(TabbarItem);
+app.use(Icon); // 引入图标
 app.use(router);
 app.mount('#app')
