@@ -1,6 +1,6 @@
 // vant引入
 import { createApp } from 'vue'
-import { Button, Swipe, SwipeItem, Skeleton, Tabbar, TabbarItem, Icon } from 'vant';
+import { Button, Swipe, SwipeItem, Skeleton, Tabbar, TabbarItem, Icon, Form, Field, CellGroup } from 'vant';
 import 'vant/lib/index.css';
 
 import App from './App.vue'
@@ -18,5 +18,8 @@ app.use(Skeleton);// 骨架屏组件
 app.use(Tabbar);// 底部导航栏
 app.use(TabbarItem);
 app.use(Icon); // 引入图标
+app.use(Form); // 表单
+app.use(Field);
+app.use(CellGroup);
 app.use(router);
 app.mount('#app')
