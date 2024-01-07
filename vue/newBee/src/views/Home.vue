@@ -11,7 +11,11 @@
                 <router-link to="#" class="search-title">欢迎进店</router-link>
             </div>
 
-            <router-link to="/login" class="login">登录</router-link>
+            <router-link to="/login" class="login" v-if="!state.isLogin">登录</router-link>
+
+            <router-link to="/user" class="login" v-else>
+                <van-icon name="manager-o" />
+            </router-link>
 
         </header>
 
@@ -91,11 +95,17 @@ const state = reactive({ //state是被reactive包裹的响应式数据
     newGoodsList: [],
     hotGoodsList: [],
     recommendGoodsList: [],
-    headerActive: false
+    headerActive: false,
+    isLogin: false
 })
 
 // 请求banner数据
 onMounted(async () => { //异步代码
+    const token = localStorage.getItem('token')
+    if (token) {
+        state.isLogin = true
+    }
+
     const { data } = await getHome()
     console.log(data);
     state.swiperList = data.data.carousels //拿到轮播图链接

@@ -1,6 +1,6 @@
 <template>
     <div class="img-verify">
-      <canvas width="120" height="40" ref="verify"></canvas>
+      <canvas width="120" height="40" ref="verify" @click="again"></canvas>
     </div>
   </template>
   
@@ -54,6 +54,9 @@
     return imgCode
   }
   
+  const again = () => {
+    imgCode.code = draw()
+  }
   </script>
   
   <style lang="less" scoped>

@@ -1,9 +1,9 @@
 <template>
     <div class="login">
-        <SimpleHeader title="登录" />
+        <SimpleHeader :title="state.type === 'login' ? '登录' : '注册'" />
         <img class="logo" src="C:\Users\15187\Pictures\联想截图\赛博冷色.png" alt="">
 
-        <div class="login-body">
+        <div class="login-body login" v-if="state.type === 'login'">
             <van-form @submit="onSubmit">
 
                 <van-field v-model="state.username" name="用户名" label="用户名" placeholder="用户名"
@@ -20,13 +20,38 @@
                 </van-field>
 
                 <div style="margin: 16px;">
+                    <div class="link-register" @click="toggle('register')">立即注册</div>
                     <van-button round block type="primary" native-type="submit">
-                        提交
+                        登录
                     </van-button>
                 </div>
             </van-form>
         </div>
 
+        <div class="login-body register" v-else>
+            <van-form @submit="onSubmit">
+
+                <van-field v-model="state.username" name="用户名" label="用户名" placeholder="用户名"
+                    :rules="[{ required: true, message: '请填写用户名' }]" />
+
+                <van-field v-model="state.password" type="password" name="密码" label="密码" placeholder="密码"
+                    :rules="[{ required: true, message: '请填写密码' }]" />
+
+                <van-field v-model="state.verify" name="验证码" label="验证码" placeholder="验证码"
+                    :rules="[{ required: true, message: '请填写验证码' }]">
+                    <template #button>
+                        <ImageVerify ref="verifyRef" />
+                    </template>
+                </van-field>
+
+                <div style="margin: 16px;">
+                    <div class="link-login" @click="toggle('login')">已有账号登录</div>
+                    <van-button round block type="success" native-type="submit">
+                        注册
+                    </van-button>
+                </div>
+            </van-form>
+        </div>
 
     </div>
 </template>
@@ -34,6 +59,9 @@
 <script setup>
 import SimpleHeader from '@/components/SimpleHeader.vue'
 import { reactive, ref, onMounted } from 'vue';
+import { showToast } from 'vant';
+import { login, register } from '../api/user.js';
+import md5 from 'md5';
 import ImageVerify from '@/components/ImageVerify.vue'
 // 引入验证码组件,verifyRef就是子组件的dom结构
 const verifyRef = ref(null)
@@ -45,8 +73,42 @@ onMounted(() => {
 const state = reactive({
     username: '',
     password: '',
-    verify: ''
+    verify: '',
+    type: 'login'
 })
+
+const onSubmit = async () => {
+    // console.log(state.username, state.password, state.verify);
+    if (state.verify !== verifyRef.value.verifyCode.code) {
+        showToast('验证码错误')
+        return
+    }
+    if (state.type === 'login') { // 登录
+        // 发请求
+        const { data } = await login({
+            'loginName': state.username,
+            'passwordMd5': md5(state.password)
+        })
+        console.log(data);
+        localStorage.setItem('token', data.data)
+        window.location.href = '/'  // 跳页面浏览器会刷新
+
+    } else { // 注册
+        // register 成功后跳转登录页面
+
+        const { data } = await register({
+            'loginName': state.username,
+            'passwordMd5': md5(state.password)
+        })
+        console.log(data);
+        window.location.href = '/login'  // 注册成功后跳转登录页面
+
+    }
+}
+
+const toggle = (type) => { // 切换登录和注册俩种模式
+    state.type = type
+}
 </script>
 
 <style lang="less" scoped>
@@ -131,7 +193,7 @@ const state = reactive({
 }
 </style>
 <style>
-.van-cell.van-field{
+.van-cell.van-field {
     align-items: center;
 }
 </style>
