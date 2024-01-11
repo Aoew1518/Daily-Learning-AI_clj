@@ -1,19 +1,21 @@
 <template>
     <div>
         <SimpleHeader :title="'商品详情'" />
+
         <div class="detail-content">
+
             <div class="detail-swipe-wrap">
                 <van-swipe class="my-swipe" indicator-color="#1baeae">
-                    <van-swipe-item>
-                        <img src="https://newbee-mall.oss-cn-beijing.aliyuncs.com/images/mate-50-pro-black.png" alt="">
+                    <van-swipe-item v-for="(item, index) in state.detail.goodsCarouselList" :key="index">
+                        <img :src="item" alt="">
                     </van-swipe-item>
                 </van-swipe>
             </div>
 
             <div class="product-info">
-                <div class="product-title">商品名称商品名称商品名称商品名称商品名称商品名称商品名称</div>
+                <div class="product-title">{{ state.detail.goodsName }}</div>
                 <div class="product-desc">免邮费 顺丰快递</div>
-                <div class="product-price">￥6999</div>
+                <div class="product-price">￥{{ state.detail.sellingPrice }}</div>
             </div>
 
             <div class="product-intro">
@@ -25,29 +27,36 @@
                 </ul>
             </div>
 
-            <div class="product-content">
-                <!-- 这里是商品详情内容 -->
-            </div>
+            <div class="product-content" v-html="state.detail.goodsDetailContent"></div>
+
         </div>
+
+        <FooterBar />
     </div>
 </template>
 
 <script setup>
-import SimpleHeader from '../components/SimpleHeader.vue';
+import SimpleHeader from '@/components/SimpleHeader.vue';
 import { useRoute, useRouter } from 'vue-router'; // 是路由的描述
-import { onMounted } from 'vue';
+import { onMounted, reactive} from 'vue';
 import { getDetail } from '../api/goods.js'
+import FooterBar from '@/components/FooterBar.vue';
 
 const route = useRoute();   // 当前页面url的详细描述route
-// const router = useRouter(); // 路由的实例对象router
+const router = useRouter(); // 路由的实例对象router
+const state = reactive({
+  detail: {}
+})
+
 console.log(route);
 
 onMounted(async () => {
     // 从url取到id值，将商品的id传给后端， 获取该商品的详细信息
     const { id } = route.query;
     // 调用接口，获取商品的详细信息
-    const res = await getDetail(id);
-    console.log(res); // 接口请求代码都要注意异步
+    const { data } = await getDetail(id);
+    console.log(data); // 接口请求代码都要注意异步
+    state.detail = data;
 })
 </script>
 

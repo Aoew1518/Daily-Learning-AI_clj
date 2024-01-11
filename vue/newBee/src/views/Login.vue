@@ -90,7 +90,7 @@ const onSubmit = async () => {
             'passwordMd5': md5(state.password)
         })
         console.log(data);
-        localStorage.setItem('token', data.data)
+        localStorage.setItem('token', data)
         window.location.href = '/'  // 跳页面浏览器会刷新
 
     } else { // 注册

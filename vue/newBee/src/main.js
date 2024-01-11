@@ -1,7 +1,8 @@
 // vant引入
 import { createApp } from 'vue'
-import { Button, Swipe, SwipeItem, Skeleton, Tabbar, TabbarItem, Icon, Form, Field, CellGroup } from 'vant';
+import { Button, Swipe, SwipeItem, Skeleton, Tabbar, TabbarItem, Icon, Form, Field, CellGroup, ActionBar, ActionBarIcon, ActionBarButton } from 'vant';
 import 'vant/lib/index.css';
+import store from './store/index'
 
 import App from './App.vue'
 // 字体适配
@@ -21,5 +22,9 @@ app.use(Icon); // 引入图标
 app.use(Form); // 表单
 app.use(Field);
 app.use(CellGroup);
+app.use(ActionBar); // actionbar动作栏
+app.use(ActionBarIcon);
+app.use(ActionBarButton);
+app.use(store); // 使用仓库
 app.use(router);
 app.mount('#app')

@@ -108,10 +108,10 @@ onMounted(async () => { //异步代码
 
     const { data } = await getHome()
     console.log(data);
-    state.swiperList = data.data.carousels //拿到轮播图链接
-    state.newGoodsList = data.data.newGoodses //拿到分类列表
-    state.hotGoodsList = data.data.hotGoodses //拿到热销商品列表
-    state.recommendGoodsList = data.data.recommendGoodses //拿到为你推荐商品列表
+    state.swiperList = data.carousels //拿到轮播图链接
+    state.newGoodsList = data.newGoodses //拿到分类列表
+    state.hotGoodsList = data.hotGoodses //拿到热销商品列表
+    state.recommendGoodsList = data.recommendGoodses //拿到为你推荐商品列表
 })
 // 轻提示函数
 const goDetail = (name) => {

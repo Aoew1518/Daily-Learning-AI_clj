@@ -9,7 +9,9 @@ axios.defaults.headers['token'] = localStorage.getItem('token') || '' ;// 设置
 axios.defaults.headers.post['Content-Type'] = 'application/json' // 告诉后端，所有post请求传递的参数都是json对象
 
 // 响应拦截
-axios.interceptors.response.use = function(res) {
+axios.interceptors.response.use((res) => {
+  console.log(res);
+  
   if (typeof res.data !== 'object') { // 程序性错误
     showFailToast('服务器异常');
     return Promise.reject(res)
@@ -26,6 +28,6 @@ axios.interceptors.response.use = function(res) {
 
   }
   return res.data
-}
+})
 
 export default axios
