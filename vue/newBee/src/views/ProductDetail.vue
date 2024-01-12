@@ -31,7 +31,7 @@
 
         </div>
 
-        <FooterBar />
+        <FooterBar :id="route.query.id"/>
     </div>
 </template>
 
@@ -53,6 +53,7 @@ console.log(route);
 onMounted(async () => {
     // 从url取到id值，将商品的id传给后端， 获取该商品的详细信息
     const { id } = route.query;
+    // const{ query:{ id } } = route
     // 调用接口，获取商品的详细信息
     const { data } = await getDetail(id);
     console.log(data); // 接口请求代码都要注意异步

@@ -101,7 +101,7 @@ const onSubmit = async () => {
             'passwordMd5': md5(state.password)
         })
         console.log(data);
-        window.location.href = '/login'  // 注册成功后跳转登录页面
+        window.location.href = '/'  // 注册成功后跳转登录页面
 
     }
 }
