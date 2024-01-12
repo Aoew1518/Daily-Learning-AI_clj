@@ -10,7 +10,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json' // 告诉后端
 
 // 响应拦截
 axios.interceptors.response.use((res) => {
-  console.log(res);
+  // console.log(res);
   
   if (typeof res.data !== 'object') { // 程序性错误
     showFailToast('服务器异常');

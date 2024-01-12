@@ -1,6 +1,6 @@
 <template>
     <div class="simple-header">
-        <van-icon name="arrow-left" v-if="true" @click="goBack"/>
+        <van-icon name="arrow-left" v-if="back" @click="goBack"/>
         <i v-else>&nbsp;</i>
         <div class="simple-header-name">{{title}}</div>
         <van-icon name="ellipsis" />
@@ -12,7 +12,11 @@
 import {defineProps} from 'vue'
 import {useRouter} from 'vue-router'
 const props = defineProps({
-    title: String
+    title: String,
+    back: {
+        type: Boolean,
+        default: true
+    }
 })
 
 const router = useRouter()
@@ -41,6 +45,7 @@ const goBack = () => {
     width: 100%;
     box-sizing: border-box;
     z-index: 999;
+    background-color: #fff;
 }
 .block{
     height: 44px;
