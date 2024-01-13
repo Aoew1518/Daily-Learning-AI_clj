@@ -15,7 +15,7 @@ const store = createStore({
     actions: { // === async mehtds 调用方法 ;Action 提交的是 mutation，而不是直接变更状态。Action 可以包含任意异步操作
         async setCartCouuntAction(context) { // ctx(context)是actions自带的，代表该处全局
             const { data } =await getCart()
-            console.log(data);
+            // console.log(data);
             context.commit('setCartCouunt', data.length); // 必须用commit来触发
         }
     },
