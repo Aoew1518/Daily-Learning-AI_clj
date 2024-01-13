@@ -44,10 +44,13 @@ import SimpleHeader from '@/components/SimpleHeader.vue';
 import { ref, onMounted, computed } from 'vue'
 import { getCart, modifyCart, deleteCartItem } from '../api/cart';
 import { useStore } from 'vuex';
+import { showFailToast } from 'vant';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const store = useStore();
-const result = ref([])
-const list = ref([])
+const result = ref([]) // 已经勾选的商品
+const list = ref([])  // 所有购物车的商品
 const checkAll = ref(true)
 
 onMounted(() => { // 该请求数据函数分开调用
@@ -79,7 +82,14 @@ const numChange = async (value, detail) => {  // 修改数量
 }
 
 const onSubmit = () => { // 提交订单
+    // 没有选中商品，提示 请选择商品进行结算，选中了商品，则跳转 /create-order
+    if (result.value.length == 0) {
+        showFailToast('请选择商品进行结算')
+        return
+    }
 
+    // console.log(JSON.stringify(result.value)); // 选中的商品的id以数组形式返回
+    router.push({ path: '/create-order', query: { cartItemIds: JSON.stringify(result.value) } })
 }
 
 const allCheck = () => { // 全选按钮
