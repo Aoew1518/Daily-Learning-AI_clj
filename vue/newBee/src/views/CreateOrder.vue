@@ -2,55 +2,86 @@
     <div class="create-order">
         <SimpleHeader title="生产订单" />
         <!-- 地址 -->
-        <div class="address-wrap">
+        <div class="address-wrap" @click="goAddress">
             <div class="name">
-                <span>张三</span>
-                <span>12334332</span>
+                <span>{{state.address.userName}}</span>
+                <span>{{state.address.userPhone}}</span>
             </div>
             <div class="address">
-                江西省抚州市临川区东华理工大学
+                {{state.address.provinceName}}{{state.address.cityName}}{{state.address.regionName}}{{state.address.detailAddress}}
             </div>
             <van-icon name="arrow" class="arrow" />
         </div>
         <!-- 订单列表 -->
         <div class="goods-list">
             <van-card 
-                num="2" 
-                price="2.00" 
-                title="商品标题"
-                thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg" 
-                v-for="item in 4"
+                :num="item.goodsCount" 
+                :price="item.sellingPrice" 
+                :title="item.goodsName"
+                :thumb="item.goodsCoverImg" 
+                v-for="item in state.cartList"
+                :key="item.cartItemId"
             />
         </div>
         <!-- 支付 -->
         <div class="pay-wrap">
             <div class="price">
                 <span>商品金额</span>
-                <span>￥312312</span>
+                <span>￥{{ totalPrice }}</span>
             </div>
-            <van-button type="primary" block>主要按钮</van-button>
+            <van-button type="primary" block>生成订单</van-button>
         </div>
     </div>
 </template>
 
 <script setup>
 import SimpleHeader from '../components/SimpleHeader.vue';
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { getCartItemIds } from '@/api/cart.js'
-import { onMounted } from 'vue'
+import { onMounted, reactive, computed } from 'vue'
+import { getAddressDetail } from '@/api/address.js'
 
-const route = useRoute()
-
+const route = useRoute()  // 拿到当前路由
+const router = useRouter() // 跳路由
+const state = reactive({
+    cartList: [],
+    address: {}
+})
 // console.log(route.query.cartItemIds);
 
-onMounted(async() => {
-    const _cartItemIds = JSON.parse(route.query.cartItemIds)
+onMounted(async () => {
+    const cartItemIds = route.query.cartItemIds
     // console.log(_cartItemIds); // 输出；数组 [78326, 78327, 78329]
     // console.log(_cartItemIds.join(',')); // 输出：字符串 78326,78327,78329
+    const _cartItemIds = cartItemIds ? JSON.parse(cartItemIds) : JSON.parse(localStorage.getItem('cartItemIds'))
+    localStorage.setItem('cartItemIds', JSON.stringify(_cartItemIds))
 
-    const { data } = await getCartItemIds({cartItemIds: _cartItemIds.join(',')})
-    console.log(data);
+    // console.log(_cartItemIds);
+    const { data: list } = await getCartItemIds({ cartItemIds: _cartItemIds.join(',') })
+    // console.log(list);
+    state.cartList = list
+
+    // 从地址页面调过来
+    const addressId = route.query.addressId
+    const { data: address } = await getAddressDetail(addressId)
+    console.log(address);
+    state.address = address
 })
+
+const totalPrice = computed(() => {
+    // return state.cartList.reduce((total, item) => {
+    //     return total += item.goodsCount * item.sellingPrice;
+    // }, 0);
+    let money = 0
+    for (let i = 0; i < state.cartList.length; i++) {
+        money += state.cartList[i].goodsCount * state.cartList[i].sellingPrice;
+    }
+    return money;
+})
+
+const goAddress = () => {
+    router.push({ path: '/address' })
+}
 
 </script>
 
@@ -92,10 +123,12 @@ onMounted(async() => {
             background-size: 80px;
         }
     }
-    .goods-list{
+
+    .goods-list {
         margin-bottom: 120px;
     }
-    .pay-wrap{
+
+    .pay-wrap {
         position: fixed;
         bottom: 0;
         left: 0;
@@ -104,12 +137,14 @@ onMounted(async() => {
         padding: 10px 20px;
         box-sizing: border-box;
         border-top: 1px solid #e9e9e9;
-        .price{
+
+        .price {
             display: flex;
             justify-content: space-between;
             font-size: 14px;
             margin: 10px 0;
-            span:nth-child(2){
+
+            span:nth-child(2) {
                 color: red;
                 font-size: 18px;
             }
@@ -118,7 +153,7 @@ onMounted(async() => {
 }
 </style>
 <style>
-.goods-list .van-card{
+.goods-list .van-card {
     background: #fff;
 }
 </style>

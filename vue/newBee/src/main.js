@@ -5,7 +5,7 @@ import {
     Tabbar, TabbarItem, Icon, Form, Field, CellGroup,
     ActionBar, ActionBarIcon, ActionBarButton,
     SwipeCell, Card, Checkbox, CheckboxGroup, Stepper,
-    SubmitBar
+    SubmitBar, AddressEdit, AddressList, Area
 } from 'vant';
 import 'vant/lib/index.css';
 import store from './store/index'
@@ -37,6 +37,9 @@ app.use(Checkbox); // 复选框
 app.use(CheckboxGroup);
 app.use(Stepper); // 步进器
 app.use(SubmitBar); // 提交订单栏
+app.use(AddressEdit); // 地址列表
+app.use(AddressList); // 地址列表
+app.use(Area); // 选择地区
 app.use(store); // 使用仓库
 app.use(router);
 app.mount('#app')
