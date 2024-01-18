@@ -1,5 +1,8 @@
 <script>
 	export default {
+		// globalData:{
+		// 	name: '全局名称'
+		// },
 		onLaunch: function() {
 			console.log('App Launch')
 		},
@@ -14,4 +17,6 @@
 
 <style>
 	/*每个页面公共css */
+	/* @import 'common/font/iconfont.css'; */
+	@import url('https://at.alicdn.com/t/c/font_4336522_63jkdmwwgcb.css')
 </style>

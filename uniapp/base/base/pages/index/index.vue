@@ -1,25 +1,45 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
+		<navigator url="/pages/about/about">去关于页面</navigator>
+		<image class="logo" src="/static/logo.png" @click="goAbout"></image>
 		<view class="text-area" @click="changeTitle">
 			<text class="title">{{title}}</text>
-			<text>{{reveseTitle}}</text>
+			<!-- <text>{{reveseTitle}}</text> -->
 		</view>
 	</view>
+	
+	<song :data='list.song'/>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
+import song from '../../components/song/song.vue'
 
 const title = ref('你好')
-
+// console.log(getApp().globalData.name)
+// const name = getApp().globalData.name
 const changeTitle = () =>{
 	title.value = title.value === '你好' ? 'Hello' : '你好'
 }
-
 const reveseTitle = computed(()=>{
 	return title.value.split('').reverse().join('')
 })
+
+const list = reactive({
+	song:{
+		img: 'https://img1.baidu.com/it/u=3709586903,1286591012&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+		title:'卡通头像',
+		price:'10',
+		marketPrice:'13'
+	}
+})
+
+const goAbout = () => {
+	uni.navigateTo({
+		url:'/pages/about/about'
+	})
+}
+
 </script>
 
 <style>
