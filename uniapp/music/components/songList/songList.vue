@@ -1,7 +1,7 @@
 <template>
 	<view class="recommend">
 		<view class="recommend-hd">
-			<view class="title">推荐歌单</view>
+			<view class="title">{{title}}</view>
 			<view class="more">
 				<uni-icons type="right" size="16"></uni-icons>
 			</view>
@@ -20,7 +20,8 @@
 
 <script setup>
 defineProps({
-	list: Array
+	list: Array,
+	title: String
 })
 </script>
 

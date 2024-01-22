@@ -42,6 +42,7 @@ const showMenu = () => {
 	width: 100%;
 	box-sizing: border-box;
 	z-index: 999;
+	background-color: white;
 }
 .box{
 	height: 100rpx;
