@@ -13,7 +13,6 @@
 				</view>
 				<view class="title">{{item.name}}</view>
 			</view>
-
 		</view>
 	</view>
 </template>
@@ -31,6 +30,7 @@ defineProps({
 		display: flex;
 		justify-content: space-between;
 		font-size: 30rpx;
+		font-weight: bold;
 	}
 	.recommend-bd {
 		display: flex;
@@ -44,7 +44,6 @@ defineProps({
 			}
 			.item-pic{
 				width: 240rpx;
-				
 				image{
 					width: 100%;
 					height: 240rpx;

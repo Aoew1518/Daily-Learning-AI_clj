@@ -7,9 +7,9 @@
 			</view>
 		</view>
 		<swiper class="swiper-wrap">
-			<swiper-item v-for="item in swiperList">
+			<swiper-item v-for="item in swiperList" :key="item.id">
 				<view class="swiper-item">
-					<view class="song-item" v-for="song in item">
+					<view class="song-item" v-for="song in item" :key="song.id">
 						<view class="song-detail">
 							<view class="pic">
 								<image :src="song.al.picUrl" mode="aspectFill"></image>
@@ -46,7 +46,7 @@ onUpdated(() => {
 		}
 		arr.push(item)
 	})
-	console.log(swiperList.value, '------');
+	// console.log(swiperList.value, '------');
 })
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-	<view class="header">
+	<view class="header" :style="{backgroundColor: bgColor}">
 		<uni-icons type="bars" size="22" @click="showMenu"></uni-icons>
 		
 		<view class="content">
@@ -7,30 +7,38 @@
 			<slot name="content"></slot>
 		</view>
 		
-		<uni-icons :type="icon" size="24"></uni-icons>
-		
+		<uni-icons :type="icon" size="22"></uni-icons>
 	</view>
-	<view class="box"></view>
+	<view class="box" v-if="needBox"></view>
 </template>
 
 <script setup>
-import { useStore } from 'vuex'
-
-const store = useStore()
-defineProps({
-	icon:{
-		type:String,
-		default:'mic'
+	import { useStore } from 'vuex';
+	const store = useStore()
+	
+	defineProps({
+		icon: {
+			type: String,
+			default: 'mic'
+		},
+		bgColor: {
+			type: String,
+			default: '#fff'
+		},
+		needBox: {
+			type: Boolean,
+			default: true
+		}
+	})
+	
+	const showMenu = () => {
+		store.commit('changeIsShowMenu', true)
 	}
-})
-
-const showMenu = () => {
-	store.commit('changeIsShowMenu',true)
-}
 </script>
 
 <style lang="scss" scoped>
 .header{
+	// background-color: #fff;
 	height: 100rpx;
 	display: flex;
 	justify-content: space-between;
@@ -42,7 +50,6 @@ const showMenu = () => {
 	width: 100%;
 	box-sizing: border-box;
 	z-index: 999;
-	background-color: white;
 }
 .box{
 	height: 100rpx;
