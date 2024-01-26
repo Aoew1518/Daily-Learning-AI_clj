@@ -4,7 +4,7 @@
 		<view class="head"></view>
 		<!-- #endif -->
 		<view class="header">
-			<uni-icons type="left" size="22" color="#fff"></uni-icons>
+			<uni-icons type="left" size="22" color="#fff" @click="goBack"></uni-icons>
 			<view class="title">歌单</view>
 			<uni-icons type="more-filled" size="22" color="#fff"></uni-icons>
 		</view>
@@ -41,24 +41,64 @@
 			</view>
 		</view>
 		<view class="list-bd">
-			
+			<view class="bd-title">
+				<uni-icons type="headphones" size="26" color="#d81e06"></uni-icons>
+				<text>全部播放</text>
+				<text class="count">（160）</text>
+			</view>
+			<view class="bd-content">
+				<view class="item">
+					<view class="num">1</view>
+					<view class="song-desc">
+						<view class="name">向云端</view>
+						<view class="author">
+							小霞
+						</view>
+					</view>
+					<view class="iconfont icon-more"></view>
+				</view>
+				<view class="item">
+					<view class="num">1</view>
+					<view class="song-desc">
+						<view class="name">向云端</view>
+						<view class="author">
+							小霞
+						</view>
+					</view>
+					<view class="iconfont icon-more"></view>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-				
-			};
-		}
-	}
+<script setup>
+import { apiGetPlayList, apiGetPlayListDetail } from '@/api/songs.js'
+import { onLoad } from '@dcloudio/uni-app';
+
+const goBack = () => {
+	uni.navigateBack()
+}
+
+onLoad((option) => {
+	// console.log(option.id);
+	getPlayList(option.id)
+	getPlayListDetail(option.id)
+})
+
+const getPlayList = async(id) => {
+	const res = await apiGetPlayList(id, 20, 0)
+	console.log(res.data.songs);
+}
+const getPlayListDetail = async(id) => {
+	const res = await apiGetPlayListDetail(id)
+	console.log(res.data.playlist, '----');
+}
 </script>
 
 <style lang="scss">
 .songs-list{
-	background: linear-gradient(to bottom, #588b77, #79af9a);
+	
 	.head{
 		position: fixed;
 		top: 0;
@@ -87,6 +127,7 @@
 		color: #fff;
 	}
 	.list-hd{
+		background: linear-gradient(to bottom, #588b77, #79af9a);
 		padding: 100rpx 30rpx 40rpx;
 		.hd-info{
 			display: flex;
@@ -136,6 +177,55 @@
 				padding: 10rpx 0;
 				font-size: 28rpx;
 				margin: 0 10rpx;
+			}
+		}
+	}
+	.list-bd{
+		background-color: #fff;
+		padding: 0 30rpx;
+		position: relative;
+		border-top-left-radius: 20rpx;
+		border-top-right-radius: 20rpx;
+		top: -20rpx;
+		overflow: hidden;
+		
+		.bd-title{
+			display: flex;
+			align-items: center;
+			padding: 30rpx 0;
+			.uni-icons{
+				margin-right: 10rpx;
+			}
+			.count{
+				font-size: 20rpx;
+			}
+		}
+		.bd-content{
+			.item{
+				display: flex;
+				align-items: center;
+				margin-bottom: 40rpx;
+				.num{
+					min-width: 50rpx;
+					color: #8b8f9b;
+				}
+				.icon-more{
+					width: 30rpx;
+					color: #8b8f9b;
+					font-size: 40rpx;
+					font-weight: bold;
+				}
+				.song-desc{
+					flex: 1;
+					.name{
+						font-size: 28rpx;
+					}
+					.author{
+						font-size: 20rpx;
+						color: #8b8f9b;
+						margin-top: 4rpx;
+					}
+				}
 			}
 		}
 	}
