@@ -29,3 +29,39 @@ class Solution:
             res.append(tmp)
         return res
 
+
+# 方法一：两个数组 
+class Solution:
+    def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
+        if root is None:
+            return []
+        ans = []
+        cur = [root]
+        while cur:
+            nxt = []
+            vals = []
+            for node in cur:
+                vals.append(node.val)
+                if node.left:  nxt.append(node.left)
+                if node.right: nxt.append(node.right)
+            cur = nxt
+            ans.append(vals)
+        return ans[::-1]
+
+# 方法二：一个队列
+class Solution:
+    def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
+        if root is None:
+            return []
+        ans = []
+        q = collections.deque()
+        q.append(root)
+        while q:
+            vals = []
+            for _ in range(len(q)):
+                node = q.popleft()
+                vals.append(node.val)
+                if node.left:  q.append(node.left)
+                if node.right: q.append(node.right)
+            ans.append(vals)
+        return ans[::-1]
