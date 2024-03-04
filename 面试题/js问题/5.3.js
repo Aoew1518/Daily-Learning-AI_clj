@@ -1,13 +1,10 @@
 let obj = {
     a: 1,
-    b: {
-      n: 2
-    },
-    c: undefined
+    b: {n: 2},
   }
   
   // const obj2 = structuredClone(obj)
-  
+
   function deepClone(obj) {
     return new Promise((resolve) => {
       const {port1, port2} = new MessageChannel()
