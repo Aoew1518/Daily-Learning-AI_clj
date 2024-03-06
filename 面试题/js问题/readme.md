@@ -179,4 +179,35 @@
 
 # 13. call, apply, bind的原理
 
-# 14. 
+# 14. 说说js中的事件模型
+- 什么事件流
+
+- 分类
+
+1. DOM0级事件模型：onclick (无法控制事件捕获冒泡)
+2. DOM1级事件模型：addEventListener (可以控制事件实执行在哪个阶段执行)
+3. IE事件模型：attachEvent (无法控制事件在捕获冒泡哪个阶段执行)
+
+# 15. 说说typeof和instanceof的区别？
+- typeof：能判断除了null之外的所有原始类型，但是无法判断引用数据类型中的具体类型, 都判断为object, 但function判断为function
+- instanceof：判断引用类型的具体, 通过原型链循环判断
+- 手写instanceof
+- Object.prototype.toString.call(?)
+    1. [].toString.call() 数组版本的toString
+    2. Object.prototype.toString.call([]) 对象版本的同String 
+    
+    该方法会让变量 ？ 调用对象的toString方法，然后返回结果
+- Array.isArray()
+
+# 16. 说说Ajax的原理
+- 什么是Ajax？
+    Async JavaScript and XML，是一种异步js和网页的交互的技术，在不刷新整个网页的情况下，能够更新部分网页。
+
+- 实现过程
+    1. 创建XHR实例对象
+    2. 调用实例对象中的open方法于服务器建立链接
+    3. 调用实例对象中的send方法发送请求
+    4. 监听实例对象中的onreadystatechange事件，通过判断readtyState属性的值，判断请求是否完成，然后执行回调函数
+    5. 将数据更新到html页面
+
+# 17. 

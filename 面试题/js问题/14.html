@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="hello" onclick="handle()">hello</div>
+    <div id="box">box</div>
+
+    <script>
+        // DOM0级
+        function handle() {
+            console.log('hello world',this);
+        }
+
+        // DOM1级
+        let box = document.getElementById('box');
+        box.addEventListener('click',function(){
+            console.log('hello world',this);
+        });
+    </script>
+</body>
+</html>
