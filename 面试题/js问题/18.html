@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">提交</button>
+
+    <script>
+        let btn = document.getElementById('btn')
+
+        btn.addEventListener('click',throttle(handle, 1000))
+
+        function handle(e){ 
+            console.log('点击了按钮');
+        }
+
+        // 防抖: 在一定的时间内, 不管点击多少次, 只会触发一次
+        function debounce(fn, wait){
+            let timer = null
+            return function(...arg){
+                // 销毁上一次的定时器
+                clearTimeout(timer)
+
+                timer = setTimeout(() => {
+                    fn.call(this, arg)
+                }, wait)
+            }
+        }
+
+        // 节流: 每次点击间隔超过一秒钟只触发一次
+        function throttle(fn, wait){
+            let lastTime = Date.now() // 最开始点击的一次
+            return function(...arg){
+                let nowTime = new Date() // 当前点击的时间
+                if(nowTime - lastTime > wait){
+                    fn.call(this, arg)
+                    lastTime = nowTime
+                }
+            }
+        }
+    </script>
+</body>
+</html>
