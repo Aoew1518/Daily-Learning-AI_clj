@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    .wrap{
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .conatiner{
       height: 200px;
     }
-
-    .conatiner{
+    .wrap{
       height: 100%;
       background-color: cadetblue;
       padding: 0 200px 0 200px;
@@ -17,15 +20,13 @@
       width: 100%;
       box-sizing: border-box;
     }
-
     .left{
       width: 200px;
       height: 100%;
       background-color: aqua;
       float: left;
       margin-left: -100%;
-    }
-    
+    } 
     .right{
       width: 200px;
       height: 100%;
@@ -36,15 +37,12 @@
   </style>
 </head>
 <body>
-  <div class="wrap">
-
-    <div class="conatiner">
+  <div class="conatiner">
+    <div class="wrap">
       <div class="content">content</div>
     </div>
-
     <div class="left">left</div>
     <div class="right">right</div>
-
   </div>
 </body>
 </html>
