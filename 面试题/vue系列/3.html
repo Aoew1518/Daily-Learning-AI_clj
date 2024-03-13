@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message" id="mess">
+        <p>{{message}}</p>
+
+        <button @click="changeMessage">change</button>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue
+
+        const app = createApp({
+            setup() {
+                const message = ref("hello world");
+
+                const changeMessage = () => {
+                    let newMessage = document.getElementById("mess").value;
+                    message.value = newMessage;
+                };
+
+                return { message, changeMessage };
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>
