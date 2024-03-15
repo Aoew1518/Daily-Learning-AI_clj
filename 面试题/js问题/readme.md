@@ -230,6 +230,7 @@
 
  - 异步
      - 微任务队列要优先于宏任务队列。微任务队列的代表就是，Promise.then，MutationObserver，宏任务的话就是setImmediate setTimeout setInterval
+
     1. 宏任务 <script> setTimeout() setInterval() setImmediate I/O UI-rendering postMassage MessageChannel
     2. 微任务 .then() nextTick() MutationObserver
 
