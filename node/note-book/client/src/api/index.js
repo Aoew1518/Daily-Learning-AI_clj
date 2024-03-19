@@ -1,34 +1,31 @@
 import axios from 'axios'
-import { showSuccessToast, showFailToast } from 'vant';
-// showSuccessToast('成功文案');
+// import { showFailToast } from 'vant';
 
-axios.defaults.baseURL = 'http://localhost:3000/'
+axios.defaults.baseURL = 'http://localhost:3000'
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 // 请求拦截
-// axios.interceptors.request.use((config) => {
-//     // 在发送请求之前做些什么
-//     return config
-// }, (error) => {
-//     // 对请求错误做些什么
-//     return Promise.reject(error)
-// })
+axios.interceptors.request.use((config) => {
+    // 在发送请求之前做些什么
+    return config
+}, (error) => {
+    // 对请求错误做些什么
+    return Promise.reject(error)
+})
 
 // 响应拦截
-axios.interceptors.response.use((response) => {
-    // 对响应数据做点什么
-    if (response.status !== 200) {  // 程序错误
-        showFailToast('服务器异常');
-        // if(response.data.code === 401) {
-        //     window.location.href = '/login'
-        // }
-    } else {
-        if (response.data.code !== '8000') {
-            showFailToast(response.data.msg);
-            return Promise.reject(response)
-        }
+axios.interceptors.response.use(res => {
+  if (res.status !== 200) { // 程序错误
+    showFailToast('服务器异常')
+    return Promise.reject(res)
+  } else {
+    if (res.data.code !== '8000') {
+      showFailToast(res.data.msg)
+      return Promise.reject(res)
     }
-    return response
+
+    return res.data
+  }
 })
 
 export default axios
