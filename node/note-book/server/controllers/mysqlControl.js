@@ -1,3 +1,11 @@
+/*
+ * @Author: Aoew1518 1518703146@qq.com
+ * @Date: 2024-03-19 19:10:38
+ * @LastEditors: Aoew1518 1518703146@qq.com
+ * @LastEditTime: 2024-03-20 20:53:45
+ * @FilePath: \node\note-book\server\controllers\mysqlControl.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // 封装连接mysql的函数
 
 const mysql = require('mysql2');
@@ -54,8 +62,23 @@ const userInsert = ( nickname, username, password ) => {
   return allService.query(_sql)
 }
 
+// 根据type查找日记列表
+const findNoteListByType = (type) => {
+  let _sql = `select * from note where note_type = "${type}";`
+  return allService.query(_sql)
+}
+
+// 根据id查找详细的日记内容
+const findNoteDetailById = (id) => {
+  let _sql = `select * from note where id = "${id}";`
+  return allService.query(_sql)
+}
+
+
 module.exports = {
   userLogin,
   userFind,
-  userInsert
+  userInsert,
+  findNoteListByType,
+  findNoteDetailById
 }
