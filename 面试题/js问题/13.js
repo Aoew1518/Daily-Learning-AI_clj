@@ -1,4 +1,5 @@
 let age = Symbol('key')
+
 var obj = {
     name: 'Tom',
     [age]: 123

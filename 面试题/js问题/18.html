@@ -25,7 +25,7 @@
                 clearTimeout(timer)
 
                 timer = setTimeout(() => {
-                    fn.call(this, arg)
+                    fn.call(this, ...arg)
                 }, wait)
             }
         }
@@ -34,9 +34,9 @@
         function throttle(fn, wait){
             let lastTime = Date.now() // 最开始点击的一次
             return function(...arg){
-                let nowTime = new Date() // 当前点击的时间
+                let nowTime = Date.now() // 当前点击的时间
                 if(nowTime - lastTime > wait){
-                    fn.call(this, arg)
+                    fn.call(this, ...arg)
                     lastTime = nowTime
                 }
             }

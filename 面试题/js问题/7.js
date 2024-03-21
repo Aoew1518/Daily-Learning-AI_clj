@@ -16,10 +16,6 @@
 
 
 
-// 示例
-function sum(a, b, c) {
-    return a + b + c;
-}
 function curry(func) {
     return function curried(...args) {
         if (args.length >= func.length) {
@@ -32,6 +28,10 @@ function curry(func) {
     };
 }
 
+// 示例
+function sum(a, b, c) {
+    return a + b + c;
+}
 
 let curriedSum = curry(sum);
 console.log(curriedSum(1)(2)(3)); // 输出 6
