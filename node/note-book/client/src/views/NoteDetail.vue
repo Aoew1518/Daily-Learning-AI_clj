@@ -1,4 +1,7 @@
 <template>
+    <!-- 返回 -->
+    <Back />
+    
     <div class="note-detail">
         <div class="note-img">
             <img :src="noteDetail.head_img" alt="">

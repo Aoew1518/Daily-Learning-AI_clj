@@ -2,6 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
+    path: '/',
+    redirect: '/noteClass', // 设置重定向
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import('@/views/Login.vue'),
@@ -39,6 +43,14 @@ const routes = [
     component: () => import('@/views/NoteDetail.vue'),
     meta: {
       title: '笔记详情'
+    }
+  },
+  {
+    path: '/notePublish',
+    name: 'noteDetail',
+    component: () => import('@/views/NotePublish.vue'),
+    meta: {
+      title: '笔记发布'
     }
   }
 ]

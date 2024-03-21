@@ -1,29 +1,31 @@
 <template>
-    <div class="note-class-wrapper">
-        <div class="note-class">
-            <!-- 头部 -->
-            <header>
-                <div><van-icon name="wap-nav" @click="" /></div>
-                <div>
-                    <van-icon name="edit" @click="" />
-                    <van-icon name="like-o" @click="" />
-                    <van-icon name="search" @click="" />              
-                </div>
-            </header>
-            <!-- 段落 -->
-            <section>
-                <div class="note-item" v-for="(item, index) in noteClassList" :key="index" :style="`background-color: ${item.bgColor}`" @click="goNoteList(item.title)">
-                    <span class="title">{{ item.title }}</span>
+  <div class="note-class-wrapper">
+      <div class="note-class">
+          <!-- 头部 -->
+          <header>
+              <div><van-icon name="wap-nav" @click="" /></div>
+              <div>
+                  <van-icon name="edit" @click="goPublish" />
+                  <van-icon name="like-o" @click="" />
+                  <van-icon name="search" @click="" />              
+              </div>
+          </header>
+          <!-- 段落 -->
+          <section>
+              <div class="note-item" v-for="(item, index) in noteClassList" :key="index" :style="`background-color: ${item.bgColor}`" @click="goNoteList(item.title)">
+                  <span class="title">{{ item.title }}</span>
 
-                </div>
-            </section>
-        </div>
-    </div>
+              </div>
+          </section>
+      </div>
+  </div>
 </template>
 
 <script setup>
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
+import axios from '@/api';
+import  Back  from '@/components/Back.vue';
 
 const router = useRouter();
 
@@ -41,6 +43,10 @@ const goNoteList = (title) => {
 
     // 第二种name路由传参，params 参数看不见
     // router.push({ name: 'noteList', params: {title: title}})
+}
+
+const goPublish = () => {
+    router.push({ path: '/notePublish' })
 }
 
 </script>

@@ -1,17 +1,20 @@
 <template>
-    <div class="note-list">
-      <ul v-if="state.noteList.length">
-        <li v-for="item in state.noteList" :key="item.id" @click="goNoteDetail(item.id)">
-          <div class="img">
-            <img :src="item.head_img" alt="">
-          </div>
-          <p class="time">{{item.c_time}}</p>
-          <p class="title">{{item.title}}</p>
-        </li>
-      </ul>
-      <p class="empty" v-else>当前分类下还没有文章哦~~</p>
-    </div>
-  </template>
+  <!-- 返回 -->
+  <Back />
+
+  <div class="note-list">
+    <ul v-if="state.noteList.length">
+      <li v-for="item in state.noteList" :key="item.id" @click="goNoteDetail(item.id)">
+        <div class="img">
+          <img :src="item.head_img" alt="">
+        </div>
+        <p class="time">{{item.c_time}}</p>
+        <p class="title">{{item.title}}</p>
+      </li>
+    </ul>
+    <p class="empty" v-else>当前分类下还没有文章哦~~</p>
+  </div>
+</template>
 
 <script setup>
 import { useRoute, useRouter } from 'vue-router';
@@ -43,6 +46,7 @@ const goNoteDetail = (id) => {
 
 <style lang="less" scoped>
 .note-list{
+  margin-top:10px ;
   width: 100%;
   padding: 1rem 0.667rem 0;
   box-sizing: border-box;
