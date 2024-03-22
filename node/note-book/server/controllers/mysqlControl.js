@@ -1,13 +1,3 @@
-/*
- * @Author: Aoew1518 1518703146@qq.com
- * @Date: 2024-03-19 19:10:38
- * @LastEditors: Aoew1518 1518703146@qq.com
- * @LastEditTime: 2024-03-20 20:53:45
- * @FilePath: \node\note-book\server\controllers\mysqlControl.js
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
-// 封装连接mysql的函数
-
 const mysql = require('mysql2');
 const config = require('../config/index.js');
 
@@ -25,7 +15,7 @@ const allService = {
   query: function (sql, values) {
     // 链接线程
     return new Promise((resolve, reject) => {
-      pool.getConnection((err, connection) => {
+      pool.getConnection((err, connection) => { // getConnection 链接pool
         if (err) {
           reject(err)
         } else {
@@ -50,7 +40,7 @@ const userLogin = (username, password) => {
   return allService.query(_sql)
 }
 
-// 查询
+// 查询 
 const userFind = (username) => {
   let _sql = `select * from users where username="${username}";`
   return allService.query(_sql)
