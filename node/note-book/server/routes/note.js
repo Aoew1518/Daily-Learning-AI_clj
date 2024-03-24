@@ -1,6 +1,7 @@
 const Router = require('@koa/router')
 const router = new Router()
-const { findNoteListByType, findNoteDetailById } = require('../controllers/mysqlControl')
+const { findNoteListByType, findNoteDetailById, notePublish } = require('../controllers/mysqlControl')
+const { formateDate } = require('../utils/index.js')
 
 // 选中笔记类型
 router.post('/findNoteListByType', async (ctx) => {
@@ -39,6 +40,43 @@ router.get('/findNoteDetailById', async (ctx) => {
             code: '8004',
             data: 'erroe',
             msg: '查找失败'
+        } 
+    }
+})
+
+// 获取笔记详情
+router.post('/notePublish', async (ctx) => {
+    const { 
+        title, 
+        note_type, 
+        head_img, 
+        note_content, 
+        userId, nickname 
+    } = ctx.request.body
+    const c_time = formateDate(new Date())
+    const m_time = formateDate(new Date())
+    
+    try{
+        const res = await notePublish([userId, title, note_type, note_content, c_time, m_time, head_img, nickname])
+        console.log(res)
+        if(res.affectedRows !== 0){
+            ctx.body = {
+                code: '8000',
+                data: 'success',
+                msg: '发布成功'
+            }
+        }else{
+            ctx.body = {
+                code: '8004',
+                data: 'erroe',
+                msg: '发布失败'
+            } 
+        }
+    }catch(error){
+        ctx.body = {
+            code: '8005',
+            data: 'erroe',
+            msg: '服务器异常'
         } 
     }
 })

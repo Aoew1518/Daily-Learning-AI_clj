@@ -47,7 +47,7 @@ const routes = [
   },
   {
     path: '/notePublish',
-    name: 'noteDetail',
+    name: 'notePublish',
     component: () => import('@/views/NotePublish.vue'),
     meta: {
       title: '笔记发布'

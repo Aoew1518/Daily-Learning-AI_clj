@@ -46,7 +46,7 @@ const userFind = (username) => {
   return allService.query(_sql)
 }
 
-// 插入
+// 注册
 const userInsert = ( nickname, username, password ) => {
   let _sql = `insert into users( nickname, username, password ) values ("${nickname}","${username}","${password}");`
   return allService.query(_sql)
@@ -64,11 +64,17 @@ const findNoteDetailById = (id) => {
   return allService.query(_sql)
 }
 
+// 发布
+const notePublish = (values) => {
+  let _sql = `insert into note set userId=?,title=?,note_type=?,note_content=?,c_time=?,m_time=?,head_img=?,nickname=?;`
+  return allService.query(_sql, values)
+}
 
 module.exports = {
   userLogin,
   userFind,
   userInsert,
   findNoteListByType,
-  findNoteDetailById
+  findNoteDetailById,
+  notePublish
 }
