@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 示例</title>
+    <style>
+        /* 属性选择器 */
+        div[class^="box"] {
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        /* 伪类选择器 */
+        div:hover {
+            background-color: lightblue;
+        }
+
+        /* 渐变色背景 */
+        .gradient-bg {
+            background: linear-gradient(to right, #ffcc00, #ff6699);
+        }
+
+        /* Box Shadow */
+        .box-shadow-example {
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Background Clip */
+        .background-clip-example {
+            background-clip: content-box;
+        }
+
+        /* Transition */
+        .transition-example {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Transform */
+        .transform-example {
+            transform: scale(1.2);
+        }
+
+        /* Animation */
+        @keyframes example {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animation-example {
+            animation: example 5s linear infinite;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 属性选择器和伪类选择器示例 -->
+    <div class="box-one gradient-bg">Box One</div>
+    <div class="box-two box-shadow-example">Box Two</div>
+    <div class="box-three background-clip-example">Box Three</div>
+    <div class="box-three transition-example transform-example animation-example">Box Fore</div>
+
+    <!-- 渐变色示例 -->
+    <!-- <div class="gradient-bg box-shadow-example background-clip-example transition-example transform-example animation-example">
+        Gradient Background
+    </div> -->
+
+</body>
+
+</html>
