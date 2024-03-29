@@ -65,8 +65,15 @@ const findNoteDetailById = (id) => {
 }
 
 // 发布
-const notePublish = (values) => {
-  let _sql = `insert into note set userId=?,title=?,note_type=?,note_content=?,c_time=?,m_time=?,head_img=?,nickname=?;`
+const notePublish = (values, id) => {
+  let _sql = ''
+  if(id){ // 有id就修改，没有id就新增
+    _sql = `update note set userId=?,title=?,note_type=?,note_content=?,c_time=?,m_time=?,head_img=?,nickname=? where id=${id};`
+  }
+  else{
+    _sql = `insert into note set userId=?,title=?,note_type=?,note_content=?,c_time=?,m_time=?,head_img=?,nickname=?;`
+
+  }
   return allService.query(_sql, values)
 }
 

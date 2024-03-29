@@ -51,13 +51,15 @@ router.post('/notePublish', async (ctx) => {
         note_type, 
         head_img, 
         note_content, 
-        userId, nickname 
+        userId,
+        nickname,
+        id
     } = ctx.request.body
     const c_time = formateDate(new Date())
     const m_time = formateDate(new Date())
-    
+
     try{
-        const res = await notePublish([userId, title, note_type, note_content, c_time, m_time, head_img, nickname])
+        const res = await notePublish([userId, title, note_type, note_content, c_time, m_time, head_img, nickname, id], id)
         console.log(res)
         if(res.affectedRows !== 0){
             ctx.body = {

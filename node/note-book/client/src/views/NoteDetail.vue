@@ -1,6 +1,6 @@
 <template>
     <!-- 返回 -->
-    <Back />
+    <Back :title="'笔记详情'" />
     
     <div class="note-detail">
         <div class="note-img">

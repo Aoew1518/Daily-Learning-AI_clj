@@ -1,10 +1,11 @@
 <template>
   <div>
-    <router-view v-slot="{ Component }">
+    <!-- <router-view v-slot="{ Component }">
       <transition name="move">
-        <component :is="Component" />
+          <component :is="Component" />
       </transition>
-    </router-view>
+    </router-view> -->
+    <router-view />
   </div>
 </template>
 

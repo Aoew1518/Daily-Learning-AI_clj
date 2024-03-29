@@ -1,4 +1,6 @@
 <template>
+  <Back :title="'笔记编辑'" />
+
   <div class="note-publish">
     <div class="editor">
       <QuillEditor 
@@ -49,6 +51,7 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { reactive, ref, onMounted } from 'vue';
 import axios from '@/api'
 import { useRouter, useRoute } from 'vue-router';
+// import { Back } from '@/components/Back.vue'
 
 const router = useRouter()
 
@@ -68,10 +71,11 @@ const state = reactive({
   note_type: "美食"
 })
 
-const afterRead = (file, detail) => {
-  // console.log(file, detail);
-  console.log(state.picture);
-}
+// 验证是否可以获取图片地址
+// const afterRead = (file, detail) => {
+//   // console.log(file, detail);
+//   console.log(state.picture);
+// }
 
 const onSelect = (item) => {
   // console.log(item);
@@ -96,10 +100,15 @@ const publish = async() => {
     id: route.query.id || ''
   })
   // console.log(res);
-  showSuccessToast(res.msg)
+  if(id){
+    showSuccessToast('修改成功')
+  }else{
+    showSuccessToast(res.msg)
+  }
 
   setTimeout(() => {
-    router.push('/noteClass')
+    // router.push({ path: '/noteList', query: { title: state.note_type }})
+    router.push({ path: '/noteClass'})
   }, 1500);
 }
 
@@ -122,7 +131,7 @@ onMounted(async() => {
   })
   state.note_type = res.data.note_type
 
-  console.log(res);
+  // console.log(res);
 })
 
 </script>

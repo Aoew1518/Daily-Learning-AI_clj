@@ -1,6 +1,6 @@
 <template>
   <!-- 返回 -->
-  <Back />
+  <Back :title="route.query.title + '记录'" />
 
   <div class="note-list">
     <ul v-if="state.noteList.length">
