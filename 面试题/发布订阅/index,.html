@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,11 +13,32 @@
         }
     </style>
 </head>
+
 <body>
     <button id="open">open</button>
     <button id="close">close</button>
 
     <script>
+
+        // function Storage() {
+        //     this.name = '张三';
+        // }
+
+        // const Helper = function () {
+        //     let instance = null;
+        //     return function () {
+        //         if (!instance) {
+        //             instance = new Storage();
+        //         }
+        //         return instance;
+        //     }
+        // }();
+
+        // let p1 = new Helper();
+        // let p2 = new Helper();
+
+        console.log(p1 === p2); // true
+
         const Model = (function () {
             let model = null
             return function () {
