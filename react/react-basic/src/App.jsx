@@ -1,27 +1,35 @@
-// 根组件
+import React from 'react';
+import ExitComponents from './conmponents/ExitComponents';
+import ClassComponents from './conmponents/ClassComponents';
 
-const songs = [
-  { id: 1, name: '庐州月' },
-  { id: 2, name: '庐州' },
-  { id: 3, name: '庐' },
-  { id: 4, name: '月' },
-]
+function HelloReact() {
+    const handler = (e) => {
+        console.log('clicked', e);
+    }
 
-const flag = true
+    return <div>
+        <p>这是一个函数组件</p>
+        <button onClick={handler}>click me</button>
+    </div>
+}
+
+
+class HelloVue extends React.Component {
+    render() {
+        return <h1>这是一个类组件</h1>;
+    }
+}
 
 function App() {
-  return (
-    <div className="App">
-      <h2>hello world</h2>
-      <ul>
-        {songs.map(song => (
-          <li key={song.id}>{song.name}</li>
-        ))}
-      </ul>
-      <h3>{flag ? 'vue好玩' : 'react好玩'}</h3>
-      {flag && <a href="#">好好好</a>}
-    </div>
-  );
-}
+    return (
+        <div className="app">
+            <HelloReact></HelloReact>
+            <HelloVue></HelloVue>
+            <hr />
+            <ExitComponents></ExitComponents>
+            <ClassComponents></ClassComponents>
+        </div>
+    );
+};
 
 export default App;
