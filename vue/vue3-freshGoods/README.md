@@ -1,3 +1,6 @@
+# 前端电商项目pc端
+- vue3-freshGoods
+
 # 账号密码
 - heima293
 - hm#qd@23!
