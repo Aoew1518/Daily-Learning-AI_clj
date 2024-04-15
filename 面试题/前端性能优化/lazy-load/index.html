@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lazy Load Images</title>
+    <style>
+        .container {
+            margin-top: 800px;
+        }
+
+        img {
+            display: block;
+            width: 230px;
+            height: 160px;
+            margin-left: 10px;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 图片容器 -->
+    <div class="container">
+        <!-- 初始时使用空src，并在data-src中指定真实图片路径 -->
+        <img src="" data-src="https://yanxuan-item.nosdn.127.net/cac68a7880bec1c72dcfce112d10e955.png""> 
+        <img src="" data-src=" https://yanxuan.nosdn.127.net/8f8092d5bf6a133a8cb59ab7b9f790e9.png">
+        <img src="" data-src="https://yanxuan-item.nosdn.127.net/eac6c40fdb0f977fdf80048d7b181ffa.png">
+        <img src="" data-src="https://yanxuan-item.nosdn.127.net/f881cfe7de9a576aaeea6ee0d1d24823.jpg">
+        <img src="" data-src="https://yanxuan-item.nosdn.127.net/06a158d2888b20383a466227e39bbbc7.jpg">
+    </div>
+    <script>
+        // 获取所有图片元素
+        let images = document.querySelectorAll('img[data-src]');
+
+        const io = new IntersectionObserver((entries) => {
+            
+        }, {
+            threshold: [0.1]
+        })
+
+        // 懒加载函数
+        function lazyLoad() {
+            // 获取滚动条距离顶部的距离,即获取元素的垂直滚动位置
+            let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            console.log('滚动条距离顶部的距离scrollTop:' + scrollTop);
+            // 获取窗口高度
+            let winHeight = window.innerHeight;
+            // console.log('窗口高度innerHeight' + winHeight);
+            console.log('可视窗口的底部到最顶部的距离scrollTop+innerHeight' + (scrollTop + winHeight));
+            // 遍历所有图片元素
+            for (let i = 0; i < images.length; i++) {
+                // 如果图片距离顶部的距离小于窗口高度
+                if (images[i].offsetTop < scrollTop + winHeight) {
+                    // // 将 data-src 中的真实图片路径赋值给 src，触发图片加载
+                    // images[i].src = images[i].getAttribute('data-src');
+                    // // 移除 data-src 属性，避免重复加载
+                    // images[i].removeAttribute('data-src');
+                    
+                    // 检查是否存在 data-src 属性
+                    if (images[i].getAttribute('data-src')) {
+                        // 获取 HTML 元素属性的方法，即要获取的属性的名称，并返回该属性的值。
+                        images[i].src = images[i].getAttribute('data-src');
+                        // 移除 data-src 属性，避免重复加载
+                        images[i].removeAttribute('data-src');
+                    }
+                }
+            }
+        }
+        // 监听滚动事件，当页面滚动时执行懒加载函数
+        window.onscroll = lazyLoad;
+    </script>
+</body>
+
+</html>
