@@ -17,4 +17,8 @@
 1. 安装路由 npm add react-router-dom@6
 2. 安装antd npm install antd --save
 3. 配置路径别名@
-4. 
+
+# Day 2
+1. 封装token
+2. 高阶组件以及重定向 Navigate
+3. 路由守卫组件 AuthRoute

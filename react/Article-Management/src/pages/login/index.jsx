@@ -12,7 +12,7 @@ const Login = () => {
   const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = async(values) => {
-    console.log('Success:', values);
+    // console.log('Success:', values);
     try{
       await loginStore.login(values)
       navigate('/')
