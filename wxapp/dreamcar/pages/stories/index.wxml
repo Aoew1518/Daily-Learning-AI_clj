@@ -1,3 +1,0 @@
-<!--pages/stories/index.wxml-->
-<button bindtap="gotoVehicles">跳到vehicles</button>
-<button bind:tap="goback"></button>
