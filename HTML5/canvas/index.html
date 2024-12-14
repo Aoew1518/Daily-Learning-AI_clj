@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D地球</title>
+    <title>可视化的地球模型</title>
     <script src="https://cdn.bootcss.com/three.js/r83/three.min.js"></script>
 </head>
 <body>
-    <!-- html5里的绘图专属标签 游戏 3D webgl方向 
-    c++ openGL  -->
+    <!-- html5 里的绘图专属标签 游戏 3D webgl方向 -->
     <canvas id="webglcanvas"></canvas>
     <script>
     // THREE 面向对象思想给我们提供了一堆的类
@@ -17,7 +16,7 @@
     // Renderer 渲染器
     // Gemotry  3D 模型 
     // Material 材质 
-    // Light灯光
+    // Light 灯光
     var canvas;
     var camera, scene, renderer;
     
@@ -35,11 +34,12 @@
 
         scene = new THREE.Scene();
         scene.background = new THREE.Color(0xffffff);
-        group = new THREE.Group(); // 一组物体
+        // 一组物体
+        group = new THREE.Group();
         scene.add(group);
         // 加载器 
         var loader = new THREE.TextureLoader();
-        loader.load('./land_ocean_ice_cloud_2048.jpg.jpg', function(textture){
+        loader.load('./earth.jpg', function(textture){
             // 3D形状
             var geometry = new THREE.SphereGeometry(200, 20, 20);
             // 材质

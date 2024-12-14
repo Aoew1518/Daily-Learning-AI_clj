@@ -1,52 +1,48 @@
-# git 大厂代码提交原则
-
-- 开发目录
-    PWD 当前的目录地址 一切皆文件
-    git init -y
-    初始化代母目录为代码仓库
-    - 反馈成功初始化一个代码仓库
-        git仓库不能嵌套
-        .git 文件夹 仓库的秘密，不要去动它
-        默认 master/main 主分支
-        HEAD 指针指向第一次提交
-        暂存区和仓库俩部分
-- 本地代码仓库
-- git 是一个版本控制系统， 开源
-    仓库里放的文件的多个版本
-- 为什么把一个文件添加到仓库需要
+# git 使用
+- 拉取代码：
+    git clone
+- 查看状态：
+    git status
+- 查看或创建分支：
+    git branch
+- 切换分支：
+    git checkout '分支名'
+- 暂存文件并 merge 代码
+    git stash
+    git pull --rebase / git pull origin master
+    git stash pop
+    - 暂存暂存的更改文件，即已经 add 过的文件
+        git stash push --staged -m "add file"
+    - 恢复特定 stash
+        git stash apply stash@{0}
+    - 删除特定 stash
+        git stash drop stash@{0}
+    - 直接应用并删除 stash
+        git stash pop stash@{0}
+- 添加暂存文件：
     git add
-    git commit
-    严格的代码提交
-    git add 添加一个文件/修改   文件
-    html css js 三个文件一起构成 依次任务， login页的开发
-    git commit -m'login页开发完成'
-    1:n 仓库
-    git add 把文件添加进暂存区 stage
-    git commit 仓库了
+- 提交本地仓库：
+    git commit -m ''
+    git commit --amend
+- 提交到指定远程仓库分支：
+    git push origin dbg_image_test
+    - 提交评审（看开发要求或使用特定命令）
+        git push origin HEAD:refs/for/dbg_image_test
 
-- git 是一个分布式的
-    本地仓库
-    远程仓库
-    合作伙伴的仓库
+# 提交错误的内容到远程分支怎么办？
+- 查看提交历史，并找到需要撤销的提交哈希值:
+    git reflog / git log
+    - 恢复指定提交（soft会保留包括修改和新增的文件）：
+        git reset --soft xxx
+    - 撤销错误提交
+        git revert abc1234
+- git push origin master
 
-- 严格
-    代码提交前一定要人间清醒
-    当前的修改和上一次的修改 改了哪些地方，
-    git diff 比较修改 在提交前用
+# 跳过 eslint 校验
+git commit --amend --no-verify
 
-- commit -m ''不能乱写，写清楚完成了什么任务
-    - leader以后就看-m 后的东西了解 我们的工作
-- git status 随时使用这个命令了解我们的当前的仓库状态
-- git log
-    打印所有的提交
-    唯一的ID hash
-    HEAD 指针，指向目前的最后一次提交
-    master 代表分支 main
+# 依赖包更新&删除
+rm -rf package-lock.json 这个命令会强制递归删除当前目录下的 package-lock.json 文件。如果该文件存在，命令会直接删除它，而不会做任何提示。
 
-- 可以通过git reset 快速来到任务一个版本
-    version control 秒懂了， 小猪
-
-- git reset --hard id 可以让我们拥有时光机
-    git reflog 所有的操作记录
-
-- changes + untracked
+# 来个背景渲染气氛
+![](https://img-baofun.zhhainiao.com/pcwallpaper_ugc/static/abed09ad2a76582ccb53485786082906.jpg?x-oss-process=image%2fresize%2cm_lfit%2cw_960%2ch_540)
