@@ -1,6 +1,11 @@
-1. 移动端适配 lib-flexible
-2. reset.css
-3. vant 引入
-4. 开发首页 -header -swiper
-    封装axios用于请求数据（设置了请求头，定义了响应拦截用于做错误的统一处理）
-    后端请求
+# 仿照淘宝的 wise 电商 app
+- 所用技术栈：
+    - js + less
+    - vue
+    - vue-router
+    - vant
+    - vuex
+    - vite
+    - axios
+    - lib-flexible: 移动端适配(reset.css)
+    - md5

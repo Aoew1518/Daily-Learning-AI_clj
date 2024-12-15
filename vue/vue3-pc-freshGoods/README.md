@@ -1,10 +1,14 @@
-# 前端电商项目pc端
-- vue3-freshGoods
-
-# 账号密码
-- heima293
-- hm#qd@23!
-
-# 支付账号密码
-- askgxl8276@sandbox.com
-- 111111
+# 前端电商项目 pc 端电商项目
+- vue3-pc-freshGoods
+- 所用技术栈：
+    - js + sass
+    - vue
+    - vue-router
+    - element-plus
+    - pinia
+    - vite
+    - axios
+    - md5
+    - pinia-plugin-persistedstate(pinia持久化存储)
+    - dayjs(日期计算)
+    - vueuse(三方工具库)
